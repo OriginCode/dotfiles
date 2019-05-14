@@ -2,11 +2,12 @@ alias rm="trash"
 alias primusrun="vblank_mode=0 primusrun"
 alias optirun="vblank_mode=0 optirun"
 alias gcms="git commit -a -S -m"
-alias reposync="rsync -ahv --delete ~/repo root@104.194.70.159:/var/www/html/ && rsync -ahv --delete ~/repo origincode@build.archlinuxcn.org:/home/origincode/public_html/"
 export TERM="screen-256color"
 export VISUAL="vim"
 alias dir='ls -l'
 export REPORTTIME=5
+
+source $HOME/.zshrc_priv
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
