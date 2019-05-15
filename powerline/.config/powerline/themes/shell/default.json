@@ -26,10 +26,6 @@
 			}
 		],
 		"right": [
-            {
-                "function": "powerline.segments.common.players.cmus",
-                "name": "player"
-            },
 			{
 				"function": "powerline.segments.shell.last_pipe_status",
 				"priority": 10
