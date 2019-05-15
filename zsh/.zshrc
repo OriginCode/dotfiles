@@ -1,4 +1,4 @@
-alias rm="trash"
+alias del="trash"
 alias primusrun="vblank_mode=0 primusrun"
 alias optirun="vblank_mode=0 optirun"
 alias gcms="git commit -a -S -m"
