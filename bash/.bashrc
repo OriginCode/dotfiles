@@ -7,3 +7,5 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+
+. /usr/lib/python3.7/site-packages/powerline/bindings/bash/powerline.sh
