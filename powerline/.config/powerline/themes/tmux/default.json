@@ -9,6 +9,9 @@
                 "function": "powerline.segments.common.bat.battery",
                 "priority": 20
 			},
+            {
+                "function": "powerline.segments.common.net.network_load"
+            },
 			{
 				"function": "powerline.segments.common.sys.system_load",
 				"priority": 50
