@@ -30,6 +30,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'dag/vim-fish'
 
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.

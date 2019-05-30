@@ -1,13 +1,9 @@
-alias del="trash"
-alias primusrun="vblank_mode=0 primusrun"
-alias optirun="vblank_mode=0 optirun"
 alias gcms="git commit -a -S -m"
 export TERM="screen-256color"
 export VISUAL="vim"
-alias dir='ls -l'
 export REPORTTIME=5
 
-source $HOME/.zshrc_priv
+source $HOME/.zshrc_custom
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -83,7 +79,6 @@ plugins=(
   repo
   zsh-autosuggestions
   ssh-agent
-  ruby
 )
 
 source $ZSH/oh-my-zsh.sh 
