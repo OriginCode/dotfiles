@@ -1,2 +1,3 @@
+#Server = https://repo.archlinuxcn.org/$arch
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn//$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
