@@ -1,5 +1,4 @@
 alias gcms="git commit -a -S -m"
-export TERM="screen-256color"
 export VISUAL="vim"
 export REPORTTIME=5
 
