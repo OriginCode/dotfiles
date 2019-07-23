@@ -126,15 +126,15 @@ source $ZSH/oh-my-zsh.sh
 # setfont /usr/share/kbd/consolefonts/ter-powerline-v16b.psf.gz
 
 # Automatic-start Tmux
-if which tmux >/dev/null 2>&1; then
+#if which tmux >/dev/null 2>&1; then
     # if no session is started, start a new session
-    test -z "$TMUX" && (tmux attach || tmux new-session)
+#    test -z "$TMUX" && (tmux attach || tmux new-session)
 
     # when quitting tmux, try to attach
-    while test -z ${TMUX}; do
-        tmux attach || break
-    done
-fi
+#    while test -z ${TMUX}; do
+#        tmux attach || break
+#    done
+#fi
 
 # History Stamp
 HIST_STAMPS="yyyy/mm/dd"
