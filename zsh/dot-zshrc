@@ -4,8 +4,6 @@ export REPORTTIME=5
 
 setopt HIST_IGNORE_DUPS
 
-source $HOME/.zshrc_custom
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -71,6 +69,7 @@ plugins=(
   archlinux
   python
   pip
+  go
   zsh-syntax-highlighting
   thefuck
   autojump
@@ -176,3 +175,5 @@ fi
 #if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 #      export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 #fi
+
+source $HOME/.zshrc_custom
