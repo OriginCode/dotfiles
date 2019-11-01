@@ -8,12 +8,12 @@ setopt HIST_IGNORE_DUPS
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
- export ZSH=/usr/share/oh-my-zsh
+export ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="astro"
+# ZSH_THEME="astro"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -58,7 +58,7 @@ DISABLE_AUTO_UPDATE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -156,13 +156,13 @@ man() {
 
 # System Upgrade
 function sysupg() {
-	sudo pacman -Sy && sudo powerpill -Suw $@ && yay -Su $@
-	yay -Qtdq | ifne sudo pacman -Rcs -
+	sudo pacman -Sy && sudo powerpill -Suw $@ && sudo pacman -Su $@
+	pacman -Qtdq | ifne sudo pacman -Rcs -
 }
 
 # fars.ee upload func
 function farsee() {
-      curl -F sunset=300 -sF "c=@${1:--}" -w "%{redirect_url}" 'http://fars.ee/?r=1' -o /dev/stderr | xsel -l /dev/null -b
+      curl -F sunset=86400 -sF "c=@${1:--}" -w "%{redirect_url}" 'http://fars.ee/?r=1' -o /dev/stderr | xsel -l /dev/null -b
 }
 
 # INSULTIER

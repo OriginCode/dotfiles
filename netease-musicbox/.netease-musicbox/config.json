@@ -101,7 +101,7 @@
     "describe": "Desktop lyrics OnTopHint."
   },
   "curses_transparency": {
-    "value": false,
+    "value": true,
     "default": false,
     "describe": "Set true to make curses transparency."
   }
