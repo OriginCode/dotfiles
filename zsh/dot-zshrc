@@ -119,7 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # PowerLine Theme for ZSH
-. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Set Terminus with PowerLine patched font for TTY
 # setfont /usr/share/kbd/consolefonts/ter-powerline-v16b.psf.gz
@@ -162,7 +162,11 @@ function sysupg() {
 
 # fars.ee upload func
 function farsee() {
-      curl -F sunset=86400 -sF "c=@${1:--}" -w "%{redirect_url}" 'http://fars.ee/?r=1' -o /dev/stderr | xsel -l /dev/null -b
+    curl -F sunset=86400 -sF "c=@${1:--}" -w "%{redirect_url}" 'http://fars.ee/?r=1' -o /dev/stderr | xsel -l /dev/null -b
+}
+
+function farsee_etern() {
+    curl -sF "c=@${1:--}" -w "%{redirect_url}" 'http://fars.ee/?r=1' -o /dev/stderr | xsel -l /dev/null -b
 }
 
 # INSULTIER
