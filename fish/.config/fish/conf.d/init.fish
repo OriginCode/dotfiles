@@ -19,5 +19,9 @@ function sysupg
     pacman -Qtdq | ifne sudo pacman -Rsc -
 end
 
-set fish_function_path $fish_function_path "/usr/lib/python3.7/site-packages/powerline/bindings/fish"
+function pc
+    proxychains -q $argv
+end
+
+set fish_function_path $fish_function_path "/usr/lib/python3.8/site-packages/powerline/bindings/fish"
 powerline-setup
