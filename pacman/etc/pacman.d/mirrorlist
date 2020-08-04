@@ -1,6 +1,0 @@
-#Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
-#Server = https://jpn.mirror.pkgbuild.com/$repo/os/$arch
-#Server = http://mirrors.kernel.org/archlinux/$repo/os/$arch
-Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
