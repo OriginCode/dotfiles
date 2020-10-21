@@ -8,7 +8,7 @@ fi
 alias gcms="git commit -a -S -m"
 export VISUAL="vim"
 export REPORTTIME=5
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.7.0/bin
 
 setopt HIST_IGNORE_DUPS
 
@@ -74,6 +74,7 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  vi-mode
   archlinux
   python
   pip
