@@ -5,10 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source /etc/locale.conf
 alias gcms="git commit -a -S -m"
 export VISUAL="vim"
 export REPORTTIME=5
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.7.0/bin
 
 setopt HIST_IGNORE_DUPS
 
@@ -38,7 +39,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -74,6 +75,8 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  gitfast
+  adb
   ubuntu
   python
   pip
@@ -87,7 +90,10 @@ plugins=(
   repo
   zsh-autosuggestions
   ssh-agent
+  docker
   rust
+  tmux
+  man
 )
 
 export ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
