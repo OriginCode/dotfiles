@@ -235,7 +235,8 @@ bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xcli
 # bindsym --release Ctrl+Shift+Print exec scrot -s '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 
 # Set wallpaper
-exec feh --bg-scale ~/Images/Wallpapers/Jelly_YSGD.jpg
+# exec feh --bg-scale ~/Images/Wallpapers/Jelly_YSGD.jpg
+exec feh --randomize --bg-scale ~/Images/Wallpapers/*
 
 # Start compton
 exec picom --config ~/.config/i3/picom.conf --experimental-backends
@@ -245,7 +246,19 @@ exec dunst
 exec fcitx5
 
 # Startup Applications
-exec --no-startup-id i3-msg 'workspace 1:Term; exec terminator'
-exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
-exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
-exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
+# exec --no-startup-id i3-msg 'workspace 1:Term; exec terminator'
+# exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
+# exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
+# exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
+set $ws1 "1:TERM"
+set $ws2 "2:TG"
+set $ws3 "3:FF"
+set $ws4 "4:TB"
+for_window [class="Terminator"] move to workspace $ws1
+for_window [class="Telegram Desktop"] move to workspace $ws2
+for_window [class="Firefox"] move to workspace $ws3
+for_window [class="Thunderbird"] move to workspace $ws4
+exec --no-startup-id terminator
+exec --no-startup-id telegram
+exec --no-startup-id firefox
+exec --no-startup-id thunderbird
