@@ -243,3 +243,8 @@ exec picom --config ~/.config/i3/picom.conf --experimental-backends
 # Start programs
 exec dunst
 exec fcitx5
+
+# Startup Applications
+exec --no-startup-id i3-msg 'workspace 1:Term; exec terminator'
+exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
+exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
