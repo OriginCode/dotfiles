@@ -248,3 +248,4 @@ exec fcitx5
 exec --no-startup-id i3-msg 'workspace 1:Term; exec terminator'
 exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
 exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
+exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
