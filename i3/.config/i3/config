@@ -46,13 +46,14 @@ set $right semicolon
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+# bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec terminator
 
 # kill focused window
 bindsym Mod1+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym Mod1+d exec rofi -show run
+bindsym Mod1+d exec rofi -combi-modi drun#run -show combi
 bindsym Mod1+p exec rofi -modi "fb:~/.config/i3/scripts/rofi-file-browser.sh" -show fb
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -217,10 +218,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 for_window [class=".*"] border pixel 0
 
 # Gaps
-gaps inner 10
+gaps inner 30
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
-
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
@@ -244,6 +244,7 @@ exec picom --config ~/.config/i3/picom.conf --experimental-backends
 # Start programs
 exec dunst
 exec fcitx5
+exec volumeicon
 
 # Startup Applications
 # exec --no-startup-id i3-msg 'workspace 1:Term; exec terminator'
@@ -251,14 +252,16 @@ exec fcitx5
 # exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
 # exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
 set $ws1 "1:TERM"
-set $ws2 "2:TG"
+set $ws2 "2:IM"
 set $ws3 "3:FF"
 set $ws4 "4:TB"
 for_window [class="Terminator"] move to workspace $ws1
-for_window [class="Telegram Desktop"] move to workspace $ws2
+for_window [class="Telegram"] move to workspace $ws2
+for_window [class="Discord"] move to workspace $ws2
 for_window [class="Firefox"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws4
 exec --no-startup-id terminator
-exec --no-startup-id telegram
+exec --no-startup-id telegram-desktop
+exec --no-startup-id discord --proxy-server="socks5://127.0.0.1:1080"
 exec --no-startup-id firefox
 exec --no-startup-id thunderbird

@@ -1,4 +1,3 @@
-set backspace=indent,eol,start
 set encoding=utf-8
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -32,9 +31,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'dag/vim-fish'
-Plugin 'stevearc/vim-arduino'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
+Plugin 'rust-lang/rust.vim'
 
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.

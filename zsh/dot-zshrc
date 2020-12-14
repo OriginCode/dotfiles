@@ -6,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source /etc/locale.conf
-alias gcms="git commit -a -S -m"
 export VISUAL="vim"
 export REPORTTIME=5
 export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.7.0/bin
