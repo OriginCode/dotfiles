@@ -1,0 +1,26 @@
+{
+	"segments": {
+		"right": [
+            {
+                "function": "powerline.segments.common.players.cmus"
+            },
+            {
+                "function": "powerline.segments.common.bat.battery"
+            },
+            {
+                "function": "powerline.segments.common.net.network_load"
+            },
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M:%S",
+					"istime": true
+				}
+			}
+		]
+	}
+}
