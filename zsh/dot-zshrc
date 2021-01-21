@@ -74,7 +74,6 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  vi-mode
   archlinux
   python
   pip
@@ -129,7 +128,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # PowerLine Theme for ZSH
-# . /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
+# . /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Set Terminus with PowerLine patched font for TTY
 # setfont /usr/share/kbd/consolefonts/ter-powerline-v16b.psf.gz
