@@ -6,10 +6,6 @@
                 "name": "player"
             },
             {
-                "function": "powerline.segments.common.players.cmus",
-                "name": "player"
-            },
-            {
                 "function": "powerline.segments.common.bat.battery",
                 "priority": 20
 			},
