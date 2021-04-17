@@ -157,6 +157,9 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# move workspace to the output at the right side
+bindsym $mod+Shift+p move workspace to output right
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -221,7 +224,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 for_window [class=".*"] border pixel 0
 
 # Gaps
-gaps inner 25
+gaps inner 7
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps inverse_outer
 
@@ -236,9 +239,12 @@ bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xcli
 # bindsym --release Ctrl+$mod+Print exec scrot -ub '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 # bindsym --release Shift+Print exec scrot -s '~/Image/scrot_%Y-%m-%d_$wx$h.png'
 # bindsym --release Ctrl+Shift+Print exec scrot -s '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+# bindsym --release Print exec gnome-screenshot
+# bindsym --release Ctrl+Print exec gnome-screenshot -c
 
 # Set wallpaper
-exec feh --bg-fill ~/Images/Wallpapers/TrafficLights.png
+# exec feh --bg-fill ~/Images/Wallpapers/TrafficLights.png
+exec feh --bg-fill ~/Images/Wallpapers/tongtong-wallpaper-april-4k.png
 # exec feh --bg-fill /usr/share/backgrounds/community-2020.harmony_traffic_light.cth451/community-2020.harmony_traffic_light.cth451.jpg
 # exec feh --bg-scale ~/Images/Wallpapers/Plain-5120x2880.png
 # exec feh --randomize --bg-fill ~/Images/Wallpapers/Anime/*
@@ -249,9 +255,16 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 # Start compton
 exec picom --experimental-backends
 
+# Start geoclue2 agent
+exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
+exec --no-startup-id redshift-gtk
+
 # Start programs
 exec dunst
 exec fcitx5
+# exec ladishd
+# exec cadence-session-start --system-start
+# exec flameshot
 
 # Startup Applications
 # exec --no-startup-id i3-msg 'workspace 1:Term; exec alacritty'
