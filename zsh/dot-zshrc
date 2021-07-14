@@ -87,7 +87,7 @@ plugins=(
   zsh_reload
   repo
   zsh-autosuggestions
-  ssh-agent
+  gpg-agent
   docker
   rust
   tmux
@@ -179,12 +179,6 @@ function farsee_etern() {
 if [ -f /etc/bash.command-not-found ]; then
         . /etc/bash.command-not-found
 fi
-
-# gpg-agent with ssh-agent
-#unset SSH_AGENT_PID
-#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-#      export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-#fi
 
 source $HOME/.zshrc_custom
 
