@@ -15,13 +15,12 @@ function ls
 end
 
 function sysupg
-    sudo pacman -Sy; and sudo powerpill -Suw $argv; and sudo pacman -Su $argv
-    pacman -Qtdq | ifne sudo pacman -Rsc -
+    sudo aptitude update; and sudo apt-fast upgrade; and sudo apt autoremove
 end
 
 function pc
     proxychains -q $argv
 end
 
-set fish_function_path $fish_function_path "/usr/lib/python3.8/site-packages/powerline/bindings/fish"
-powerline-setup
+#set fish_function_path $fish_function_path "/usr/lib/python3.8/site-packages/powerline/bindings/fish"
+#powerline-setup
