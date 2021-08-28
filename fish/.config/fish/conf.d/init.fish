@@ -11,7 +11,7 @@ function la
 end
 
 function ls
-    exa
+    exa $argv
 end
 
 function sysupg

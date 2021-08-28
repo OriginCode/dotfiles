@@ -29,11 +29,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'dag/vim-fish'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'rust-lang/rust.vim'
+Plugin 'arcticicestudio/nord-vim'
 
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
@@ -53,11 +54,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
+" set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
 
 " These lines setup the environment to show graphics and colors correctly.
 syntax enable
-" colorscheme monokai
+colorscheme nord
  
 let g:minBufExplForceSyntaxEnable = 1
  
@@ -71,7 +72,6 @@ if ! has('gui_running')
 endif
  
 set laststatus=2 " Always display the statusline in all windows
-set guifont=Inconsolata\ for\ Powerline:h14
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -80,7 +80,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 set nu
-let g:ycm_python_binary_path = '/usr/bin/python2'
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif

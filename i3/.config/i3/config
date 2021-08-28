@@ -244,7 +244,7 @@ bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xcli
 
 # Set wallpaper
 # exec feh --bg-fill ~/Images/Wallpapers/TrafficLights.png
-exec feh --bg-fill ~/Images/Wallpapers/tongtong-wallpaper-april-4k.png
+exec_always feh --bg-fill ~/Images/Wallpapers/rostyslav-savchyn-VeeL9GtUXV8-unsplash.jpg
 # exec feh --bg-fill /usr/share/backgrounds/community-2020.harmony_traffic_light.cth451/community-2020.harmony_traffic_light.cth451.jpg
 # exec feh --bg-scale ~/Images/Wallpapers/Plain-5120x2880.png
 # exec feh --randomize --bg-fill ~/Images/Wallpapers/Anime/*
