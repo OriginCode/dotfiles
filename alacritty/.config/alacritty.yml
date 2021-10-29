@@ -1,7 +1,7 @@
 env:
   TERM: xterm-256color
 
-background_opacity: 1
+background_opacity: .75
 
 # Colors (nord)
 colors:

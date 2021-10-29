@@ -84,7 +84,6 @@ plugins=(
   autojump
   zsh-completions
   taskwarrior
-  zsh_reload
   repo
   zsh-autosuggestions
   gpg-agent

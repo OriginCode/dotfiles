@@ -216,17 +216,17 @@ bindsym $mod+r mode "resize"
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer --card 1 sset 'Master' 5%+ && pkill -SIGRTMIN+11 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer --card 1 sset 'Master' 5%- && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer --card 1 sset 'Master' 5+ && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer --card 1 sset 'Master' 5- && pkill -SIGRTMIN+11 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -SIGRTMIN+11 i3blocks
 
 # Borderless
 for_window [class=".*"] border pixel 0
 
 # Gaps
-# gaps outer 7
+gaps inner 20
 # Only enable gaps on a workspace when there is at least one container
-# smart_gaps inverse_outer
+smart_gaps on
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
@@ -252,12 +252,12 @@ exec_always feh --bg-fill ~/Images/Wallpapers/rostyslav-savchyn-VeeL9GtUXV8-unsp
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
-# Start compton
+# Start picom
 exec picom --experimental-backends
 
 # Start geoclue2 agent
 exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
-exec --no-startup-id redshift-gtk
+#exec --no-startup-id redshift-gtk
 
 # Start programs
 exec dunst
