@@ -14,6 +14,7 @@ function __git.init
   __git.create_abbr g          git
   __git.create_abbr ga         git add
   __git.create_abbr gaa        git add --all
+  __git.create_abbr gau        git add --update
   __git.create_abbr gapa       git add --patch
   __git.create_abbr gap        git apply
   __git.create_abbr gb         git branch -vv
@@ -64,8 +65,8 @@ function __git.init
   __git.create_abbr gl         git pull
   __git.create_abbr gll        git pull origin
   __git.create_abbr glr        git pull --rebase
-  __git.create_abbr glg        git log --stat --max-count=10
-  __git.create_abbr glgg       git log --graph --max-count=10
+  __git.create_abbr glg        git log --stat
+  __git.create_abbr glgg       git log --graph
   __git.create_abbr glgga      git log --graph --decorate --all
   __git.create_abbr glo        git log --oneline --decorate --color
   __git.create_abbr glog       git log --oneline --decorate --color --graph
@@ -74,6 +75,7 @@ function __git.init
   __git.create_abbr gloo       "git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
   __git.create_abbr gm         git merge
   __git.create_abbr gmt        git mergetool --no-prompt
+  __git.create_abbr gmom       git merge origin/\(__git.default_branch\)
   __git.create_abbr gp         git push
   __git.create_abbr gp!        git push --force-with-lease
   __git.create_abbr gpo        git push origin
@@ -106,6 +108,7 @@ function __git.init
   __git.create_abbr grs        git restore
   __git.create_abbr grset      git remote set-url
   __git.create_abbr grss       git restore --source
+  __git.create_abbr grst       git restore --staged
   __git.create_abbr grup       git remote update
   __git.create_abbr grv        git remote -v
   __git.create_abbr gsh        git show
@@ -115,6 +118,7 @@ function __git.init
   __git.create_abbr gst        git status
   __git.create_abbr gsta       git stash
   __git.create_abbr gstd       git stash drop
+  __git.create_abbr gstl       git stash list
   __git.create_abbr gstp       git stash pop
   __git.create_abbr gsts       git stash show --text
   __git.create_abbr gsu        git submodule update

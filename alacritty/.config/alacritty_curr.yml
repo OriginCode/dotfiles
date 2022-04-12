@@ -1,37 +1,37 @@
 env:
   TERM: xterm-256color
 
-background_opacity: 0.75
+background_opacity: 1
 
-# Colors (MaterialDarker)
+# Colors (nord)
 colors:
   bright:
-    black: '#545454'
-    blue: '#82aaff'
-    cyan: '#89ddff'
-    green: '#c3e88d'
-    magenta: '#c792ea'
-    red: '#ff5370'
-    white: '#ffffff'
-    yellow: '#ffcb6b'
+    black: '#4c566a'
+    blue: '#81a1c1'
+    cyan: '#8fbcbb'
+    green: '#a3be8c'
+    magenta: '#b48ead'
+    red: '#bf616a'
+    white: '#eceff4'
+    yellow: '#ebcb8b'
   cursor:
-    cursor: '#ffffff'
-    text: '#ffffff'
+    cursor: '#eceff4'
+    text: '#282828'
   normal:
-    black: '#000000'
-    blue: '#82aaff'
-    cyan: '#89ddff'
-    green: '#c3e88d'
-    magenta: '#c792ea'
-    red: '#ff5370'
-    white: '#ffffff'
-    yellow: '#ffcb6b'
+    black: '#3b4252'
+    blue: '#81a1c1'
+    cyan: '#88c0d0'
+    green: '#a3be8c'
+    magenta: '#b48ead'
+    red: '#bf616a'
+    white: '#e5e9f0'
+    yellow: '#ebcb8b'
   primary:
-    background: '#212121'
-    foreground: '#eeffff'
+    background: '#2e3440'
+    foreground: '#d8dee9'
   selection:
-    background: '#eeffff'
-    text: '#545454'
+    background: '#eceff4'
+    text: '#4c566a'
 
 font:
-  size: 8.0
+  size: 12.0

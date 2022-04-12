@@ -1,3 +1,4 @@
 # OriginCode's dotfiles
 
-A collection of my dotfiles. Currently being managed using GNU Stow.
+## Screenshot
+![Screenshot](https://github.com/OriginCode/dotfiles/AOSC_OS_Nord_Dark_Setup.png)

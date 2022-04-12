@@ -1,3 +1,7 @@
+set -g fish_greeting
+
+fish_vi_key_bindings
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -9,3 +13,5 @@ set -g theme_display_date no
 set -g theme_show_exit_status yes
 
 thefuck --alias | source
+
+starship init fish | source

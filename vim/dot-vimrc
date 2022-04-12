@@ -33,8 +33,13 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'dag/vim-fish'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'rust-lang/rust.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'tpope/vim-obsession'
 
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
@@ -57,7 +62,10 @@ filetype plugin indent on    " required
 " set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
 
 " These lines setup the environment to show graphics and colors correctly.
+
 syntax enable
+
+let g:airline_powerline_fonts = 1
 colorscheme nord
  
 let g:minBufExplForceSyntaxEnable = 1
@@ -77,10 +85,18 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Start NERDTree and put the cursor back in the other window.
+" autocmd VimEnter * NERDTree | wincmd p
+" Open NERDTree in every tab
+" autocmd BufWinEnter * NERDTreeMirror
+
 set nu
+
+let mapleader=","
+set completeopt-=preview
 let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_always_populate_location_list = 1
+let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -88,3 +104,20 @@ endif
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 3
+
+set pastetoggle=<F3>
+nnoremap <F2> :term<CR>
+nnoremap <F4> :open

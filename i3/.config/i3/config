@@ -24,7 +24,7 @@ font pango:monospace 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -86,6 +86,9 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# move floating window to center
+bindsym $mod+Shift+h move position center
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -194,24 +197,42 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $nord0   #2E3440
+set $nord1   #3B4252
+set $nord2   #434C5E
+set $nord3   #4C566A
+set $nord4   #D8DEE9
+set $nord5   #E5E9F0
+set $nord6   #ECEFF4
+set $nord7   #8FBCBB
+set $nord8   #88C0D0
+set $nord9   #81A1C1
+set $nord10  #5E81AC
+set $nord11  #BF616A
+set $nord12  #D08770
+set $nord13  #EBCB8B
+set $nord14  #A3BE8C
+set $nord15  #B48EAD
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#        position top
-#        i3bar_command i3bar -t
-#        # status_command python3 /usr/lib/python3.8/site-packages/powerline/bindings/i3/powerline-i3.py
-#        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#        strip_workspace_numbers yes
-#	    colors {
-#	        background #00000000
-#	        statusline #00000000
-#	        separator #00000000
-#	        # Workspace theme  border background text
-#	        focused_workspace #cfd8dc #cfd8dc #263238
-#            active_workspace   #00000000 #00000000 #eceff1
-#            inactive_workspace #00000000 #00000000 #eceff1
-#	    }
-#}
+bar {
+    font pango:monospace,Font Awesome 5 Free 12
+    position bottom
+    tray_output none
+    tray_padding 5
+    strip_workspace_numbers yes
+    status_command i3status-rs ~/.config/i3/i3status.toml
+    colors {
+        background $nord0
+        statusline $nord8
+
+        focused_workspace   $nord0 $nord9 $nord0
+        active_workspace    $nord0 $nord9 $nord0
+        inactive_workspace  $nord0 $nord0 $nord9
+        urgent_workspace    $nord0 $nord15 $nord0
+    }
+}
 
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
@@ -227,14 +248,18 @@ for_window [class=".*"] border pixel 0
 gaps inner 20
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
+# Rounded corners
+border_radius 5
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
 bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+12 i3blocks
 
 # Screenshots
-bindsym --release Print exec scrot '~/Image/scrot_%Y-%m-%d_$wx$h.png'
-bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym Print exec flameshot gui
+bindsym Ctrl+Print exec flameshot full -c
+# bindsym --release Print exec scrot '~/Image/scrot_%Y-%m-%d_$wx$h.png'
+# bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 # bindsym --release $mod+Print exec scrot -ub '~/Image/scrot_%Y-%m-%d_$wx$h.png'
 # bindsym --release Ctrl+$mod+Print exec scrot -ub '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 # bindsym --release Shift+Print exec scrot -s '~/Image/scrot_%Y-%m-%d_$wx$h.png'
@@ -244,13 +269,13 @@ bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xcli
 
 # Set wallpaper
 # exec feh --bg-fill ~/Images/Wallpapers/TrafficLights.png
-exec_always feh --bg-fill ~/Images/Wallpapers/rostyslav-savchyn-VeeL9GtUXV8-unsplash.jpg
+exec_always nitrogen --set-auto ~/Images/AOSC_Nord.png
 # exec feh --bg-fill /usr/share/backgrounds/community-2020.harmony_traffic_light.cth451/community-2020.harmony_traffic_light.cth451.jpg
 # exec feh --bg-scale ~/Images/Wallpapers/Plain-5120x2880.png
 # exec feh --randomize --bg-fill ~/Images/Wallpapers/Anime/*
 
 # Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 # Start picom
 exec picom --experimental-backends
@@ -265,6 +290,7 @@ exec fcitx5
 # exec ladishd
 # exec cadence-session-start --system-start
 exec flameshot
+exec blueman-applet
 
 # Startup Applications
 # exec --no-startup-id i3-msg 'workspace 1:Term; exec alacritty'
@@ -272,10 +298,10 @@ exec flameshot
 # exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
 # exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
 set $ws1 "1:TERM"
-set $ws2 "2:IM"
-set $ws3 "3:FF"
-set $ws4 "4:TB"
-set $ws5 "5:VSC"
+set $ws2 "2:CHAT"
+set $ws3 "3:WEB"
+set $ws4 "4:MAIL"
+set $ws5 "5:CODE"
 for_window [class="Alacritty"] move to workspace $ws1
 for_window [class="Telegram"] move to workspace $ws2
 for_window [class="Firefox"] move to workspace $ws3
