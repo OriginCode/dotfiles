@@ -57,7 +57,7 @@ buttons = ["prev", "play", "next"]
 [[block]]
 block = "time"
 interval = 5
-format = "禮拜%a %d/%m %R"
+format = "禮拜%a %m/%d %R"
 locale = "zh_TW"
 
 [[block]]
