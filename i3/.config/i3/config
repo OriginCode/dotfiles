@@ -55,7 +55,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec ~/.config/polybar/forest/scripts/launcher.sh
+bindsym $mod+d exec ~/.config/rofi/bin/launcher_text
 bindsym $mod+p exec rofi -modi "fb:~/.config/i3/scripts/rofi-file-browser.sh" -show fb
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -236,20 +236,18 @@ bar {
 
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer --card 1 sset 'Master' 5+ && pkill -SIGRTMIN+11 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer --card 1 sset 'Master' 5- && pkill -SIGRTMIN+11 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -SIGRTMIN+11 i3blocks
+# Use amixer to adjust volume in Alsa
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer --card 1 sset 'Master' 5+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer --card 1 sset 'Master' 5-
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Borderless
 for_window [class=".*"] border pixel 0
 
 # Gaps
-gaps inner 20
+gaps inner 10
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
-# Rounded corners
-border_radius 5
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
@@ -267,28 +265,29 @@ bindsym Ctrl+Print exec flameshot full -c
 # bindsym --release Print exec gnome-screenshot
 # bindsym --release Ctrl+Print exec gnome-screenshot -c
 
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+#exec --no-startup-id dex --autostart --environment i3
+
+# Start Cadence
+exec --no-startup-id cadence-session-start --system-start
+
 # Set wallpaper
-# exec feh --bg-fill ~/Images/Wallpapers/TrafficLights.png
-exec_always nitrogen --set-auto ~/Images/AOSC_Nord.png
-# exec feh --bg-fill /usr/share/backgrounds/community-2020.harmony_traffic_light.cth451/community-2020.harmony_traffic_light.cth451.jpg
-# exec feh --bg-scale ~/Images/Wallpapers/Plain-5120x2880.png
-# exec feh --randomize --bg-fill ~/Images/Wallpapers/Anime/*
+exec_always nitrogen --set-auto ~/Images/AOSC_Nord_Light.png
 
 # Start polybar
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 # Start picom
-exec picom --experimental-backends
+exec_always picom --experimental-backends
 
 # Start geoclue2 agent
 exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
-#exec --no-startup-id redshift-gtk
+exec --no-startup-id redshift-gtk
 
 # Start programs
 exec dunst
 exec fcitx5
-# exec ladishd
-# exec cadence-session-start --system-start
 exec flameshot
 exec blueman-applet
 
@@ -297,16 +296,18 @@ exec blueman-applet
 # exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
 # exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
 # exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
-set $ws1 "1:TERM"
-set $ws2 "2:CHAT"
-set $ws3 "3:WEB"
-set $ws4 "4:MAIL"
-set $ws5 "5:CODE"
+set $ws1 "1:終端"
+set $ws2 "2:談天"
+set $ws3 "3:網絡"
+set $ws4 "4:郵件"
+set $ws5 "5:編程"
+set $ws10 "10:音樂"
 for_window [class="Alacritty"] move to workspace $ws1
 for_window [class="Telegram"] move to workspace $ws2
 for_window [class="Firefox"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
+for_window [class="Carla"] move to workspace $ws10
 exec --no-startup-id alacritty
 exec --no-startup-id telegram-desktop
 exec --no-startup-id firefox

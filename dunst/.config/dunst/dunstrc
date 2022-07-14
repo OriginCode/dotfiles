@@ -60,7 +60,10 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-30+20"
+    width = 300
+    height = 200
+    offset = 10x40
+    origin = bottom-right
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -124,9 +127,11 @@
     # browser for opening urls in context menu
     browser = /usr/bin/firefox -new-tab
 
-[frame]
-    width = 0
-    color = "#000000"
+    # rounded corner
+    corner_radius = 10
+
+    # no frame
+    frame_width = 0
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -149,18 +154,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#484644"
-    foreground = "#ffffff"
+    background = "#2e3440"
+    foreground = "#d8dee9"
     #timeout = 10
 
 [urgency_normal]
-    background = "#005a9e"
-    foreground = "#ffffff"
+    background = "#eceff4"
+    foreground = "#2e3440"
     #timeout = 10
 
 [urgency_critical]
-    background = "#b7472a"
-    foreground = "#ffffff"
+    background = "#bf616a"
+    foreground = "#eceff4"
     timeout = 0
 
 
@@ -194,27 +199,6 @@
 ## This notification will not be displayed
 #    summary = "foobar"
 #    format = ""
-
-[signed_on]
-    appname = Pidgin
-    summary = "*signed on*"
-    urgency = low
-
-[signed_off]
-    appname = Pidgin
-    summary = *signed off*
-    urgency = low
-
-[says]
-    appname = Pidgin
-    summary = *says*
-    urgency = critical
-    format  = "%s "%b""
-
-[music]
-    appname = Amarok
-    summary = "Now playing"
-    urgency = low
 
 #[twitter]
 #    appname = Pidgin

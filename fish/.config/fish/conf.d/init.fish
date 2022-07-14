@@ -1,25 +1,13 @@
-function l
-    exa -lah $argv
-end
+alias l "exa -lah"
+alias ll "exa -l"
+alias la "exa -a"
+alias ls exa
 
-function ll
-    exa -l $argv
-end
-
-function la
-    exa -a $argv
-end
-
-function ls
-    exa $argv
-end
+alias pc "proxychains -q"
+alias cp "cp --reflink"
 
 function sysupg
     sudo aptitude update; and sudo apt-fast full-upgrade; and sudo apt autoremove
-end
-
-function pc
-    proxychains -q $argv
 end
 
 fish_add_path $HOME/.local/bin $HOME/.cargo/bin

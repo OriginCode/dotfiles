@@ -23,7 +23,6 @@ Plugin 'wincent/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
@@ -32,6 +31,9 @@ Plugin 'plasticboy/vim-markdown'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'dag/vim-fish'
 Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'prabirshrestha/async.vim'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'rust-lang/rust.vim'
@@ -40,6 +42,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'tpope/vim-obsession'
+Plugin 'iamcco/markdown-preview.nvim' 
+Plugin 'github/copilot.vim'
 
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
@@ -90,13 +94,15 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " Open NERDTree in every tab
 " autocmd BufWinEnter * NERDTreeMirror
 
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 set nu
 
 let mapleader=","
-set completeopt-=preview
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:ycm_always_populate_location_list = 1
-let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -104,6 +110,8 @@ endif
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set mouse=a
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -118,6 +126,21 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 3
 
+" Markdown no folding
+let g:vim_markdown_folding_disabled = 1
+
 set pastetoggle=<F3>
 nnoremap <F2> :term<CR>
 nnoremap <F4> :open
+
+" asynccomplete.vim
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() . "\<cr>" : "\<cr>"
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
