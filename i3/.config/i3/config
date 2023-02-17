@@ -24,7 +24,7 @@ font pango:monospace 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -49,13 +49,13 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec ~/.config/rofi/bin/launcher_text
+bindsym $mod+d exec ~/.config/rofi/launchers/type-4/launcher.sh
 bindsym $mod+p exec rofi -modi "fb:~/.config/i3/scripts/rofi-file-browser.sh" -show fb
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -122,6 +122,9 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+
+# move the current workspace to the right monitor
+bindsym $mod+m move workspace to output right
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -218,14 +221,13 @@ set $nord15  #B48EAD
 # finds out, if available)
 bar {
     font pango:monospace,Font Awesome 5 Free 12
-    position bottom
-    tray_output none
+    position top
+    tray_output primary
     tray_padding 5
     strip_workspace_numbers yes
     status_command i3status-rs ~/.config/i3/i3status.toml
     colors {
         background $nord0
-        statusline $nord8
 
         focused_workspace   $nord0 $nord9 $nord0
         active_workspace    $nord0 $nord9 $nord0
@@ -245,9 +247,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 for_window [class=".*"] border pixel 0
 
 # Gaps
-gaps inner 10
+gaps inner 15
 # Only enable gaps on a workspace when there is at least one container
-smart_gaps on
+# smart_gaps inverse_outer
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
@@ -267,23 +269,24 @@ bindsym Ctrl+Print exec flameshot full -c
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-#exec --no-startup-id dex --autostart --environment i3
+# exec --no-startup-id dex --autostart --environment i3
+
+# Start Geoclue Agent
+exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
 
 # Start Cadence
 exec --no-startup-id cadence-session-start --system-start
 
 # Set wallpaper
-exec_always nitrogen --set-auto ~/Images/AOSC_Nord_Light.png
+exec_always feh --bg-fill ~/Images/Wallpapers/AOSC_Nord.png
+
+bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/MashiroNeko.png --bg-fill ~/Images/Wallpapers/Mashiro_Sunset.png
 
 # Start polybar
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --colorblocks
 
 # Start picom
-exec_always picom --experimental-backends
-
-# Start geoclue2 agent
-exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
-exec --no-startup-id redshift-gtk
+exec_always picom
 
 # Start programs
 exec dunst
@@ -296,19 +299,20 @@ exec blueman-applet
 # exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
 # exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
 # exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
-set $ws1 "1:終端"
-set $ws2 "2:談天"
-set $ws3 "3:網絡"
-set $ws4 "4:郵件"
-set $ws5 "5:編程"
-set $ws10 "10:音樂"
-for_window [class="Alacritty"] move to workspace $ws1
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws9 "9:"
+set $ws10 "10:"
+for_window [class="wezterm"] move to workspace $ws1
 for_window [class="Telegram"] move to workspace $ws2
 for_window [class="Firefox"] move to workspace $ws3
-for_window [class="Thunderbird"] move to workspace $ws4
+for_window [class="thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
 for_window [class="Carla"] move to workspace $ws10
-exec --no-startup-id alacritty
+exec --no-startup-id wezterm
 exec --no-startup-id telegram-desktop
 exec --no-startup-id firefox
 exec --no-startup-id thunderbird

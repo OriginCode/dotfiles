@@ -1,12 +1,14 @@
-dpi:
-  x: 96.0
-  y: 96.0
+scale_with_dpi: false
+
+# dpi:
+#   x: 96.0
+#   y: 96.0
 
 env:
   TERM: xterm-256color
 
 window:
-  opacity: 1
+  opacity: 0.9
 
 # Colors (nord)
 colors:

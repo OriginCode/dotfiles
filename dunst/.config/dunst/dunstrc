@@ -63,7 +63,7 @@
     width = 300
     height = 200
     offset = 10x40
-    origin = bottom-right
+    origin = top-right
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
