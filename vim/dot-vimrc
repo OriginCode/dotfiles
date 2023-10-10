@@ -2,71 +2,39 @@ set encoding=utf-8
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'wincent/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'dag/vim-fish'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'mattn/vim-lsp-settings'
-Plugin 'rust-lang/rust.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'mhinz/vim-startify'
-Plugin 'tpope/vim-obsession'
-Plugin 'iamcco/markdown-preview.nvim' 
-Plugin 'github/copilot.vim'
-Plugin 'alvan/vim-closetag'
-Plugin 'lervag/vimtex'
-
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
-
-" These lines setup the environment to show graphics and colors correctly.
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'wincent/command-t'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'dag/vim-fish'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'rust-lang/rust.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'arcticicestudio/nord-vim'
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-obsession'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'github/copilot.vim'
+Plug 'alvan/vim-closetag'
+Plug 'lervag/vimtex'
+Plug 'kaarmu/typst.vim'
+Plug 'tpope/vim-sleuth'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jpalardy/vim-slime'
+call plug#end()
 
 syntax enable
 
@@ -109,9 +77,9 @@ let maplocalleader="-"
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" set tabstop=4
+" set shiftwidth=4
+" set expandtab
 
 set mouse=a
 
@@ -160,3 +128,20 @@ let g:rustfmt_autosave = 1
 " set foldmethod=expr
 "   \ foldexpr=lsp#ui#vim#folding#foldexpr()
 "   \ foldtext=lsp#ui#vim#folding#foldtext()
+
+" disable copilot by default
+let b:copilot_enabled = 0
+
+" Typst LSP
+if executable('typst-lsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typst-lsp',
+        \ 'cmd': {server_info->['typst-lsp']},
+        \ 'allowlist': ['typst'],
+        \ })
+endif
+
+" ultisnips keybindings
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"

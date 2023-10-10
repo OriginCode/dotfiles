@@ -126,6 +126,9 @@ bindsym $mod+minus scratchpad show
 # move the current workspace to the right monitor
 bindsym $mod+m move workspace to output right
 
+# lock the screen
+bindsym $mod+o exec --no-startup-id loginctl lock-session
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -249,7 +252,7 @@ for_window [class=".*"] border pixel 0
 # Gaps
 gaps inner 15
 # Only enable gaps on a workspace when there is at least one container
-# smart_gaps inverse_outer
+smart_gaps on
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
@@ -275,15 +278,20 @@ bindsym Ctrl+Print exec flameshot full -c
 exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
 
 # Start Cadence
-exec --no-startup-id cadence-session-start --system-start
+#exec --no-startup-id cadence-session-start --system-start
+
+# Start carla
+# exec --no-startup-id pw-jack carla -n ~/carlaproj/pw.carxp
 
 # Set wallpaper
-exec_always feh --bg-fill ~/Images/Wallpapers/AOSC_Nord.png
+exec_always feh --bg-fill ~/Images/Wallpapers/TrafficLights-Nord.png --bg-fill ~/Images/Wallpapers/AOSC_Nord.png
 
-bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/MashiroNeko.png --bg-fill ~/Images/Wallpapers/Mashiro_Sunset.png
+#bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
+bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/Mashiro_Swimsuit.png
+bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/Triumph_II.png --bg-fill ~/Images/Wallpapers/Triumph.png
 
 # Start polybar
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --colorblocks
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
 
 # Start picom
 exec_always picom
@@ -293,12 +301,14 @@ exec dunst
 exec fcitx5
 exec flameshot
 exec blueman-applet
+#exec redshift-gtk
 
 # Startup Applications
-# exec --no-startup-id i3-msg 'workspace 1:Term; exec alacritty'
-# exec --no-startup-id i3-msg 'workspace 2:TG; exec telegram-desktop'
-# exec --no-startup-id i3-msg 'workspace 3:FF; exec firefox'
-# exec --no-startup-id i3-msg 'workspace 4:TB; exec thunderbird'
+#exec --no-startup-id i3-msg 'workspace 1; exec wezterm'
+#exec --no-startup-id i3-msg 'workspace 2; exec telegram-desktop'
+#exec --no-startup-id i3-msg 'workspace 3; exec firefox'
+#exec --no-startup-id i3-msg 'workspace 4; exec thunderbird'
+#exec --no-startup-id i3-msg 'workspace 9; exec flatpak run com.github.wwmm.easyeffects'
 set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
@@ -308,12 +318,17 @@ set $ws9 "9:"
 set $ws10 "10:"
 for_window [class="wezterm"] move to workspace $ws1
 for_window [class="Telegram"] move to workspace $ws2
-for_window [class="Firefox"] move to workspace $ws3
+for_window [class="firefox"] move to workspace $ws3
 for_window [class="thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
-for_window [class="Carla"] move to workspace $ws10
+for_window [class="easyeffects"] move to workspace $ws9
+for_window [class="feishin"] move to workspace $ws10
 exec --no-startup-id wezterm
 exec --no-startup-id telegram-desktop
 exec --no-startup-id firefox
 exec --no-startup-id thunderbird
+exec --no-startup-id flatpak run com.github.wwmm.easyeffects
+exec --no-startup-id feishin
 # exec --no-startup-id vscode
+for_window [class="com.vixalien.sticky"] sticky enable
+for_window [class="com.vixalien.sticky"] floating enable
