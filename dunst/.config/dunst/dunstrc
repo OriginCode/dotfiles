@@ -151,23 +151,39 @@
     # context menu
     context = mod4+shift+i
 
+# Nord Dark
+#[urgency_low]
+#    # IMPORTANT: colors have to be defined in quotation marks.
+#    # Otherwise the '#' and following  would be interpreted as a comment.
+#    background = "#2e3440"
+#    foreground = "#d8dee9"
+#    #timeout = 10
+#
+#[urgency_normal]
+#    background = "#eceff4"
+#    foreground = "#2e3440"
+#    #timeout = 10
+#
+#[urgency_critical]
+#    background = "#bf616a"
+#    foreground = "#eceff4"
+#    timeout = 0
+
+# Gruvbox
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#2e3440"
-    foreground = "#d8dee9"
-    #timeout = 10
+    background = "#282828"
+    foreground = "#ebdbb2"
+    timeout = 10
 
 [urgency_normal]
-    background = "#eceff4"
-    foreground = "#2e3440"
-    #timeout = 10
+    background = "#fbf1c7"
+    foreground = "#3c3836"
+    timeout = 10
 
 [urgency_critical]
-    background = "#bf616a"
-    foreground = "#eceff4"
+    background = "#fb4934"
+    foreground = "#ebdbb2"
     timeout = 0
-
 
 # Every section that isn't one of the above is interpreted as a rules
 # to override settings for certain messages.

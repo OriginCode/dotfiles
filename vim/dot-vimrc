@@ -3,7 +3,6 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
-Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'wincent/command-t'
@@ -23,6 +22,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-obsession'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
@@ -34,15 +34,18 @@ Plug 'tpope/vim-sleuth'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime'
+Plug 'liuchengxu/graphviz.vim'
 call plug#end()
 
 syntax enable
 
 let g:airline_powerline_fonts = 1
-colorscheme nord
- 
+let g:gruvbox_italic = 1
+colorscheme gruvbox
+set background=dark
+
 let g:minBufExplForceSyntaxEnable = 1
- 
+
 if ! has('gui_running')
    set ttimeoutlen=10
    augroup FastEscape
@@ -51,7 +54,7 @@ if ! has('gui_running')
       au InsertLeave * set timeoutlen=1000
    augroup END
 endif
- 
+
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 nmap <silent> <c-n> :NERDTreeToggle<CR>
@@ -145,3 +148,21 @@ endif
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" vim-slime target
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+" let g:slime_target = "vimterminal"
+" let g:slime_vimterminal_cmd = "racket"
+
+" workaround for conflict with vim-slime
+nnoremap <C-c> <nop>
+
+" default output format for GraphViz
+let g:graphviz_output_format = 'png'
+
+" enable true color support
+set termguicolors
+
+" show bracket match pairs
+set showmatch

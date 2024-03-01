@@ -1,5 +1,5 @@
 [theme]
-theme = "nord-dark"
+theme = "gruvbox-dark"
 #[theme.overrides]
 #idle_bg = "#3B4252"
 
@@ -10,8 +10,10 @@ icons = "awesome5"
 block = "focused_window"
 format = " $title.str(max_w:20,rot_interval:0.5) |"
 [block.theme_overrides]
-idle_bg = "#5e81ac"
-idle_fg = "#2e3440"
+#idle_bg = "#5e81ac"
+#idle_fg = "#2e3440"
+idle_bg = "#d79921"
+idle_fg = "#3c3836"
 
 [[block]]
 block = "music"

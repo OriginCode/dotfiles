@@ -220,6 +220,18 @@ set $nord13  #EBCB8B
 set $nord14  #A3BE8C
 set $nord15  #B48EAD
 
+# Gruvbox Colors
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+set $orange #d65d0e
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -230,12 +242,16 @@ bar {
     strip_workspace_numbers yes
     status_command i3status-rs ~/.config/i3/i3status.toml
     colors {
-        background $nord0
+        background $bg
 
-        focused_workspace   $nord0 $nord9 $nord0
-        active_workspace    $nord0 $nord9 $nord0
-        inactive_workspace  $nord0 $nord0 $nord9
-        urgent_workspace    $nord0 $nord15 $nord0
+        #focused_workspace   $nord0 $nord9 $nord0
+        #active_workspace    $nord0 $nord9 $nord0
+        #inactive_workspace  $nord0 $nord0 $nord9
+        #urgent_workspace    $nord0 $nord15 $nord0
+        focused_workspace   $bg $yellow $bg
+        active_workspace    $bg $yellow $bg
+        inactive_workspace  $bg $bg $yellow
+        urgent_workspace    $bg $red $bg
     }
 }
 
@@ -283,12 +299,16 @@ exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
 # Start carla
 # exec --no-startup-id pw-jack carla -n ~/carlaproj/pw.carxp
 
+# Start GNOME Keyring
+exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+
 # Set wallpaper
-exec_always feh --bg-fill ~/Images/Wallpapers/TrafficLights-Nord.png --bg-fill ~/Images/Wallpapers/AOSC_Nord.png
+exec_always feh --bg-fill ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg --bg-fill ~/Images/AOSC_Gruvbox.png
 
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
 bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/Mashiro_Swimsuit.png
-bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/Triumph_II.png --bg-fill ~/Images/Wallpapers/Triumph.png
+bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
 
 # Start polybar
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
@@ -301,6 +321,7 @@ exec dunst
 exec fcitx5
 exec flameshot
 exec blueman-applet
+exec kdeconnect-indicator
 #exec redshift-gtk
 
 # Startup Applications
@@ -318,6 +339,7 @@ set $ws9 "9:"
 set $ws10 "10:"
 for_window [class="wezterm"] move to workspace $ws1
 for_window [class="Telegram"] move to workspace $ws2
+for_window [class="SchildiChat"] move to workspace $ws2
 for_window [class="firefox"] move to workspace $ws3
 for_window [class="thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
@@ -325,9 +347,10 @@ for_window [class="easyeffects"] move to workspace $ws9
 for_window [class="feishin"] move to workspace $ws10
 exec --no-startup-id wezterm
 exec --no-startup-id telegram-desktop
+exec --no-startup-id flatpak run chat.schildi.desktop
 exec --no-startup-id firefox
 exec --no-startup-id thunderbird
-exec --no-startup-id flatpak run com.github.wwmm.easyeffects
+#exec --no-startup-id flatpak run com.github.wwmm.easyeffects
 exec --no-startup-id feishin
 # exec --no-startup-id vscode
 for_window [class="com.vixalien.sticky"] sticky enable
