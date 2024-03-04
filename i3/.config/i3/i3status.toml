@@ -82,7 +82,8 @@ max_vol = 100
 [[block]]
 block = "time"
 interval = 5
-format = " $icon $timestamp.datetime(f:'禮拜%a %m/%d %R', l:zh_TW) "
+#format = " $icon $timestamp.datetime(f:'禮拜%a %m/%d %R', l:zh_TW) "
+format = " $icon $timestamp.datetime(f:'%R') "
 
 [[block]]
 block = "battery"

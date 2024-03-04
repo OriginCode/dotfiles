@@ -1,0 +1,361 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+set $mod Mod1
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 12
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
+exec --no-startup-id swayidle -w timeout 300 'swaylock -f -c 000000' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f -c 000000'
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet --indicator
+
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start wofi (a program launcher)
+bindsym $mod+d exec wofi -S drun
+bindsym $mod+p exec ~/.config/sway/scripts/wofer/wofer
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# move floating window to center
+bindsym $mod+Shift+h move position center
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# move the current workspace to the right monitor
+bindsym $mod+m move workspace to output right
+
+# lock the screen
+bindsym $mod+o exec --no-startup-id loginctl lock-session
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 "9:"
+set $ws10 "10:"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# move workspace to the output at the right side
+bindsym $mod+Shift+p move workspace to output right
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+set $nord0   #2E3440
+set $nord1   #3B4252
+set $nord2   #434C5E
+set $nord3   #4C566A
+set $nord4   #D8DEE9
+set $nord5   #E5E9F0
+set $nord6   #ECEFF4
+set $nord7   #8FBCBB
+set $nord8   #88C0D0
+set $nord9   #81A1C1
+set $nord10  #5E81AC
+set $nord11  #BF616A
+set $nord12  #D08770
+set $nord13  #EBCB8B
+set $nord14  #A3BE8C
+set $nord15  #B48EAD
+
+# Gruvbox Colors
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+set $orange #d65d0e
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    font pango:monospace,Font Awesome 5 Free 12
+    position top
+    tray_padding 5
+    icon_theme Papirus-Dark
+    strip_workspace_numbers yes
+    status_command i3status-rs ~/.config/i3/i3status.toml
+    colors {
+        background $bg
+
+        #focused_workspace   $nord0 $nord9 $nord0
+        #active_workspace    $nord0 $nord9 $nord0
+        #inactive_workspace  $nord0 $nord0 $nord9
+        #urgent_workspace    $nord0 $nord15 $nord0
+        focused_workspace   $bg $yellow $bg
+        active_workspace    $bg $yellow $bg
+        inactive_workspace  $bg $bg $yellow
+        urgent_workspace    $bg $red $bg
+    }
+}
+
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+# Use amixer to adjust volume in Alsa
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer --card 1 sset 'Master' 5+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer --card 1 sset 'Master' 5-
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Borderless
+for_window [class=".*"] border pixel 0
+
+# Dual monitors
+output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
+output eDP-1 disable pos 1920 1920 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+bindsym $mod+b output eDP-1 toggle
+
+default_orientation horizontal
+
+# Gaps
+gaps inner 15
+# Only enable gaps on a workspace when there is at least one container
+smart_gaps on
+
+# Brightness control via light
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
+# Screenshots
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Ctrl+Print exec grim - | wl-copy
+bindsym Ctrl+Alt+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+# bindsym --release Print exec scrot '~/Image/scrot_%Y-%m-%d_$wx$h.png'
+# bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+# bindsym --release $mod+Print exec scrot -ub '~/Image/scrot_%Y-%m-%d_$wx$h.png'
+# bindsym --release Ctrl+$mod+Print exec scrot -ub '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+# bindsym --release Shift+Print exec scrot -s '~/Image/scrot_%Y-%m-%d_$wx$h.png'
+# bindsym --release Ctrl+Shift+Print exec scrot -s '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+# bindsym --release Print exec gnome-screenshot
+# bindsym --release Ctrl+Print exec gnome-screenshot -c
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+# exec --no-startup-id dex --autostart --environment i3
+
+# Start Geoclue Agent
+exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
+
+# Start Cadence
+#exec --no-startup-id cadence-session-start --system-start
+
+# Start carla
+# exec --no-startup-id pw-jack carla -n ~/carlaproj/pw.carxp
+
+# Start GNOME Keyring
+exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+
+# Set wallpaper
+# exec_always feh --bg-fill ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg --bg-fill ~/Images/AOSC_Gruvbox.png
+
+
+#bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
+bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+#bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
+
+# Start polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
+
+# Start picom
+#exec_always picom
+
+# Start programs
+exec dunst
+exec fcitx5
+#exec flameshot
+exec blueman-applet
+exec kdeconnect-indicator
+#exec redshift-gtk
+
+# Startup Applications
+#exec --no-startup-id i3-msg 'workspace 1; exec wezterm'
+#exec --no-startup-id i3-msg 'workspace 2; exec telegram-desktop'
+#exec --no-startup-id i3-msg 'workspace 3; exec firefox'
+#exec --no-startup-id i3-msg 'workspace 4; exec thunderbird'
+#exec --no-startup-id i3-msg 'workspace 9; exec flatpak run com.github.wwmm.easyeffects'
+for_window [app_id="Alacritty"] move to workspace $ws1
+for_window [app_id="org.telegram"] move to workspace $ws2
+for_window [class="SchildiChat"] move to workspace $ws2
+for_window [app_id="firefox"] move to workspace $ws3
+for_window [class="thunderbird"] move to workspace $ws4
+for_window [class="Code - OSS"] move to workspace $ws5
+for_window [class="easyeffects"] move to workspace $ws9
+for_window [class="feishin"] move to workspace $ws10
+exec --no-startup-id alacritty
+exec --no-startup-id telegram-desktop
+exec --no-startup-id flatpak run chat.schildi.desktop
+exec --no-startup-id firefox
+exec --no-startup-id thunderbird
+#exec --no-startup-id flatpak run com.github.wwmm.easyeffects
+exec --no-startup-id feishin
+# exec --no-startup-id vscode
+for_window [class="com.vixalien.sticky"] sticky enable
+for_window [class="com.vixalien.sticky"] floating enable
+
+for_window [class="Dunst"] opacity 0.8

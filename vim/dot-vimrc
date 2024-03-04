@@ -22,7 +22,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-obsession'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }

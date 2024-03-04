@@ -1,0 +1,3 @@
+[submodule "sway/.config/sway/scripts/wofer"]
+	path = sway/.config/sway/scripts/wofer
+	url = https://gitlab.com/snakedye/wofer
