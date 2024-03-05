@@ -25,7 +25,7 @@ font pango:monospace 12
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
-exec --no-startup-id swayidle -w timeout 300 'swaylock -f -c 000000' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f -c 000000'
+exec --no-startup-id swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -56,7 +56,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start wofi (a program launcher)
-bindsym $mod+d exec wofi -S drun
+bindsym $mod+d exec 'wofi -S drun,run'
 bindsym $mod+p exec ~/.config/sway/scripts/wofer/wofer
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -326,7 +326,7 @@ bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Yukata_H
 #exec_always picom
 
 # Start programs
-exec dunst
+exec mako
 exec fcitx5
 #exec flameshot
 exec blueman-applet
