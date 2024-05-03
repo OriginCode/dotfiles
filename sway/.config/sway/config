@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 12
+font pango:monospace 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,19 +24,20 @@ font pango:monospace 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
-exec --no-startup-id swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock'
+# exec xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
+exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock'
+exec sway-audio-idle-inhibit
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet --indicator
+exec nm-applet --indicator
 
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -50,19 +51,20 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start wofi (a program launcher)
-bindsym $mod+d exec 'wofi -S drun,run'
+bindsym $mod+d exec fuzzel
+bindsym $mod+q exec wofi -S run
 bindsym $mod+p exec ~/.config/sway/scripts/wofer/wofer
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec i3-dmenu-desktop
 
 # change focus
 bindsym $mod+$left focus left
@@ -128,7 +130,7 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+m move workspace to output right
 
 # lock the screen
-bindsym $mod+o exec --no-startup-id loginctl lock-session
+bindsym $mod+o exec swaylock
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -234,7 +236,7 @@ set $orange #d65d0e
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:monospace,Font Awesome 5 Free 12
+    font pango:monospace,Font Awesome 5 Free 11
     position top
     tray_padding 5
     icon_theme Papirus-Dark
@@ -254,23 +256,28 @@ bar {
     }
 }
 
-bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym $mod+n exec echo "" | dmenu -p "New name for this workspace" | xargs -r swaymsg rename workspace to
 
 # Use amixer to adjust volume in Alsa
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer --card 1 sset 'Master' 5+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer --card 1 sset 'Master' 5-
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec amixer --card 1 sset 'Master' 5+
+bindsym XF86AudioLowerVolume exec amixer --card 1 sset 'Master' 5-
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Borderless
 for_window [class=".*"] border pixel 0
 
 # Dual monitors
-output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output DP-1 pos 0 0
+exec '~/.config/sway/scripts/mpvpaper.sh'
+#output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
-output eDP-1 disable pos 1920 1920 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
-bindsym $mod+b output eDP-1 toggle
+output eDP-2 disable pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+bindsym $mod+b output eDP-2 toggle
 
 default_orientation horizontal
+
+# Set keyboard layout
+input type:keyboard xkb_layout us
 
 # Gaps
 gaps inner 15
@@ -284,7 +291,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # Screenshots
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
 bindsym Ctrl+Print exec grim - | wl-copy
-bindsym Ctrl+Alt+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+bindsym Mod4+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
 # bindsym --release Print exec scrot '~/Image/scrot_%Y-%m-%d_$wx$h.png'
 # bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 # bindsym --release $mod+Print exec scrot -ub '~/Image/scrot_%Y-%m-%d_$wx$h.png'
@@ -296,31 +303,35 @@ bindsym Ctrl+Alt+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | sele
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-# exec --no-startup-id dex --autostart --environment i3
+# exec dex --autostart --environment i3
 
 # Start Geoclue Agent
-exec --no-startup-id /usr/libexec/geoclue-2.0/demos/agent
+#exec /usr/libexec/geoclue-2.0/demos/agent
 
 # Start Cadence
-#exec --no-startup-id cadence-session-start --system-start
+#exec cadence-session-start --system-start
 
 # Start carla
-# exec --no-startup-id pw-jack carla -n ~/carlaproj/pw.carxp
+# exec pw-jack carla -n ~/carlaproj/pw.carxp
 
 # Start GNOME Keyring
-exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+#exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+#exec /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Set wallpaper
 # exec_always feh --bg-fill ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg --bg-fill ~/Images/AOSC_Gruvbox.png
 
+# Set XDG DBus Env
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
-bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+#bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+bindsym $mod+u exec 'pkill mpvpaper; ~/.config/sway/scripts/mpvpaper.sh'
 #bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
 
 # Start polybar
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
+#exec_always $HOME/.config/polybar/launch.sh --blocks
 
 # Start picom
 #exec_always picom
@@ -331,31 +342,30 @@ exec fcitx5
 #exec flameshot
 exec blueman-applet
 exec kdeconnect-indicator
+exec /usr/lib/libexec/polkit-kde-authentication-agent-1
 #exec redshift-gtk
 
 # Startup Applications
-#exec --no-startup-id i3-msg 'workspace 1; exec wezterm'
-#exec --no-startup-id i3-msg 'workspace 2; exec telegram-desktop'
-#exec --no-startup-id i3-msg 'workspace 3; exec firefox'
-#exec --no-startup-id i3-msg 'workspace 4; exec thunderbird'
-#exec --no-startup-id i3-msg 'workspace 9; exec flatpak run com.github.wwmm.easyeffects'
-for_window [app_id="Alacritty"] move to workspace $ws1
+#exec i3-msg 'workspace 1; exec wezterm'
+#exec i3-msg 'workspace 2; exec telegram-desktop'
+#exec i3-msg 'workspace 3; exec firefox'
+#exec i3-msg 'workspace 4; exec thunderbird'
+#exec i3-msg 'workspace 9; exec flatpak run com.github.wwmm.easyeffects'
+for_window [app_id="org.wezfurlong.wezterm"] move to workspace $ws1
 for_window [app_id="org.telegram"] move to workspace $ws2
 for_window [class="SchildiChat"] move to workspace $ws2
 for_window [app_id="firefox"] move to workspace $ws3
-for_window [class="thunderbird"] move to workspace $ws4
+for_window [app_id="thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
 for_window [class="easyeffects"] move to workspace $ws9
 for_window [class="feishin"] move to workspace $ws10
-exec --no-startup-id alacritty
-exec --no-startup-id telegram-desktop
-exec --no-startup-id flatpak run chat.schildi.desktop
-exec --no-startup-id firefox
-exec --no-startup-id thunderbird
-#exec --no-startup-id flatpak run com.github.wwmm.easyeffects
-exec --no-startup-id feishin
-# exec --no-startup-id vscode
+exec wezterm
+exec telegram-desktop
+exec flatpak run chat.schildi.desktop
+exec firefox
+exec env MOZ_ENABLE_WAYLAND=1 thunderbird
+#exec flatpak run com.github.wwmm.easyeffects
+exec feishin
+# exec vscode
 for_window [class="com.vixalien.sticky"] sticky enable
 for_window [class="com.vixalien.sticky"] floating enable
-
-for_window [class="Dunst"] opacity 0.8

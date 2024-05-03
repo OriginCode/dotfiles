@@ -5,7 +5,7 @@ screenshot
 effect-blur=6x6
 effect-vignette=0.65:1
 color=32302f
-font=Iosevka Term
+font=Sarasa Term TC
 indicator
 indicator-radius=120
 indicator-thickness=16
@@ -34,4 +34,3 @@ grace-no-touch
 datestr=%a, %B %e
 timestr=%I:%M %p
 fade-in=0.15
-ignore-empty-password

@@ -276,7 +276,8 @@ bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+12 i3blocks
 
 # Screenshots
 bindsym Print exec flameshot gui
-bindsym Ctrl+Print exec flameshot full -c
+bindsym Control+Print exec flameshot full -c
+bindsym Mod4+Print exec flameshot screen -c
 # bindsym --release Print exec scrot '~/Image/scrot_%Y-%m-%d_$wx$h.png'
 # bindsym --release Ctrl+Print exec scrot '/tmp/scrot_%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 # bindsym --release $mod+Print exec scrot -ub '~/Image/scrot_%Y-%m-%d_$wx$h.png'
@@ -317,11 +318,11 @@ bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Im
 exec_always picom
 
 # Start programs
-exec dunst
-exec fcitx5
-exec flameshot
-exec blueman-applet
-exec kdeconnect-indicator
+exec --no-startup-id dunst
+exec --no-startup-id fcitx5
+exec --no-startup-id flameshot
+exec --no-startup-id blueman-applet
+exec --no-startup-id kdeconnect-indicator
 #exec redshift-gtk
 
 # Startup Applications

@@ -15,13 +15,13 @@ if status is-interactive
 end
 
 #set -g theme_color_scheme nord
-theme_gruvbox dark
 set -g theme_display_user yes
 set -g theme_display_hostname yes
 set -g theme_display_date no
 set -g theme_show_exit_status yes
 
 set -x EDITOR vim
+set -x MANWIDTH 80
 
 thefuck --alias | source
 

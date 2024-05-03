@@ -1,8 +1,8 @@
 [env]
-TERM = "xterm-256color"
+TERM = "alacritty"
 
-#[window]
-#opacity = 0.9
+[window]
+opacity = 0.9
 
 # Colors (GruvboxDark)
 
