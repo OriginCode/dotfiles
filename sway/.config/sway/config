@@ -25,7 +25,7 @@ font pango:monospace 11
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
-exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock'
+exec swayidle
 exec sway-audio-idle-inhibit
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -134,16 +134,27 @@ bindsym $mod+o exec swaylock
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
+#set $ws1 "1:"
+#set $ws2 "2:"
+#set $ws3 "3:"
+#set $ws4 "4:"
+#set $ws5 "5:"
+#set $ws6 6
+#set $ws7 7
+#set $ws8 8
+#set $ws9 "9:"
+#set $ws10 "10:"
+
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -235,25 +246,29 @@ set $orange #d65d0e
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    font pango:monospace,Font Awesome 5 Free 11
-    position top
-    tray_padding 5
-    icon_theme Papirus-Dark
-    strip_workspace_numbers yes
-    status_command i3status-rs ~/.config/i3/i3status.toml
-    colors {
-        background $bg
+#bar {
+#    font pango:monospace 11
+#    position top
+#    tray_padding 5
+#    icon_theme Papirus-Dark
+#    strip_workspace_numbers yes
+#    status_command i3status-rs ~/.config/i3/i3status.toml
+#    colors {
+#        background $bg
+#
+#        #focused_workspace   $nord0 $nord9 $nord0
+#        #active_workspace    $nord0 $nord9 $nord0
+#        #inactive_workspace  $nord0 $nord0 $nord9
+#        #urgent_workspace    $nord0 $nord15 $nord0
+#        focused_workspace   $bg $yellow $bg
+#        active_workspace    $bg $yellow $bg
+#        inactive_workspace  $bg $bg $yellow
+#        urgent_workspace    $bg $red $bg
+#    }
+#}
 
-        #focused_workspace   $nord0 $nord9 $nord0
-        #active_workspace    $nord0 $nord9 $nord0
-        #inactive_workspace  $nord0 $nord0 $nord9
-        #urgent_workspace    $nord0 $nord15 $nord0
-        focused_workspace   $bg $yellow $bg
-        active_workspace    $bg $yellow $bg
-        inactive_workspace  $bg $bg $yellow
-        urgent_workspace    $bg $red $bg
-    }
+bar {
+    swaybar_command waybar
 }
 
 bindsym $mod+n exec echo "" | dmenu -p "New name for this workspace" | xargs -r swaymsg rename workspace to
@@ -268,11 +283,16 @@ for_window [class=".*"] border pixel 0
 
 # Dual monitors
 output DP-1 pos 0 0
-exec '~/.config/sway/scripts/mpvpaper.sh'
-#output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+#exec '~/.config/sway/scripts/mpvpaper.sh'
+output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
 output eDP-2 disable pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 bindsym $mod+b output eDP-2 toggle
+
+#blur enable
+#corner_radius 10
+#shadows enable
+#shadow_blur_radius 15
 
 default_orientation horizontal
 
@@ -280,9 +300,9 @@ default_orientation horizontal
 input type:keyboard xkb_layout us
 
 # Gaps
-gaps inner 15
+gaps inner 5
 # Only enable gaps on a workspace when there is at least one container
-smart_gaps on
+#smart_gaps on
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -325,8 +345,8 @@ bindsym Mod4+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
-#bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
-bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Sketch.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+#bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 bindsym $mod+u exec 'pkill mpvpaper; ~/.config/sway/scripts/mpvpaper.sh'
 #bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
 

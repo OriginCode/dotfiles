@@ -28,3 +28,6 @@ background-color=#fb4934bf
 progress-color=source #cc241dbf
 text-color=#ebdbb2
 default-timeout=0
+
+[mode=away]
+invisible=1

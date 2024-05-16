@@ -36,6 +36,7 @@ Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
+Plug 'jalvesaq/Nvim-R'
 call plug#end()
 
 syntax enable
@@ -174,3 +175,21 @@ set showmatch
 
 " enable rainbow parentheses
 let g:rainbow_active = 1
+
+" disable lsp diagnoses
+let g:lsp_diagnostics_enabled = 0
+
+" autostart R and object browser
+let R_auto_start = 1
+let R_objbr_auto_start = 1
+
+" set pdfviewer for R
+let R_pdfviewer = 'okular'
+
+" adjust R and obj browser buffer positon and size
+let R_objbr_place = 'script,right'
+let R_objbr_w = 50
+let R_objbr_opendf = 1    " Show data.frames elements
+let R_objbr_openlist = 1  " Show lists elements
+let R_rconsole_width = 0
+let R_rconsole_height = 10
