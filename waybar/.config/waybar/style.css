@@ -31,13 +31,13 @@ window#waybar.solo {
 */
 
 .modules-right {
-    margin: 5px 5px 0 0;
+    margin: 10px 10px 0 0;
 }
 .modules-center {
-    margin: 5px 0 0 0;
+    margin: 10px 0 0 0;
 }
 .modules-left {
-    margin: 5px 0 0 5px;
+    margin: 10px 0 0 10px;
 }
 
 button {
@@ -61,6 +61,15 @@ button:hover {
     padding: 0 5px;
     background-color: transparent;
     color: #ebdbb2;
+    border-radius: 0;
+}
+
+#workspaces button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+#workspaces button:last-child {
+    border-radius: 0 5px 5px 0;
 }
 
 #workspaces button:hover {
@@ -76,14 +85,16 @@ button:hover {
     background-color: #b16286;
 }
 
+#idle_inhibitor,
+#cava,
+#scratchpad,
+#mode,
 #window,
 #clock,
 #battery,
 #backlight,
 #wireplumber,
 #tray,
-#scratchpad,
-#mode,
 #mpris,
 #load {
     padding: 0 10px;
@@ -105,6 +116,10 @@ button:hover {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
+}
+
+#cava {
+    padding: 0 5px;
 }
 
 #battery.charging, #battery.plugged {

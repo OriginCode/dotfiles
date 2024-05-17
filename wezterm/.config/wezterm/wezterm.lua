@@ -62,11 +62,11 @@ config.font = wezterm.font_with_fallback {
   "Sarasa Term J",
   "Sarasa Term K",
 }
-config.font_size = 14.0
+config.font_size = 12.0
 config.color_scheme = "Gruvbox Dark (Gogh)"
 config.window_decorations = "RESIZE"
 -- config.enable_tab_bar = false
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 config.term = "wezterm"
 -- config.default_prog = { '/usr/bin/zellij', 'a', '-c', 'main' }
 
