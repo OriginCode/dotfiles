@@ -61,6 +61,7 @@ config.font = wezterm.font_with_fallback {
   "Sarasa Term SC",
   "Sarasa Term J",
   "Sarasa Term K",
+  "Iosevka Nerd Font Propo"
 }
 config.font_size = 12.0
 config.color_scheme = "Gruvbox Dark (Gogh)"

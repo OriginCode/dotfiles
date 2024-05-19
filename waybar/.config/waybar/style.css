@@ -3,9 +3,17 @@
     border-radius: 5px;
 }
 
+tooltip {
+    font-family: Iosevka Nerd Font Propo, monospace;
+    background-color: rgba(40, 40, 40, 0.8);
+    color: #ebdbb2;
+    border-radius: 5px;
+    border: 1px solid #665c54;
+}
+
 window#waybar {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, monospace;
+    font-family: Iosevka Nerd Font Propo, monospace;
     background-color: transparent;
     border-bottom: 0px;
     color: #ebdbb2;
@@ -19,6 +27,7 @@ window#waybar.hidden {
 
 window#waybar.empty #window {
     background-color: transparent;
+    padding: 0;
 }
 
 /*
@@ -93,6 +102,7 @@ button:hover {
 #clock,
 #battery,
 #backlight,
+#custom-weather,
 #wireplumber,
 #tray,
 #mpris,
@@ -172,4 +182,5 @@ label:focus {
 
 #scratchpad.empty {
     background: transparent;
+    padding: 0;
 }
