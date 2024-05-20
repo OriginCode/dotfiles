@@ -1,0 +1,50 @@
+// Load with --load-config examples/2.jsonc
+// Note that you must replace the image path to an existing image to display it.
+
+{
+    "$schema": "./json_schema.json",
+    "logo": {
+        "type": "iterm",
+        "source": "~/.face",
+        "width": 16,
+        "height": 7,
+        "preserveAspectRatio": true
+    },
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+        {
+            "type": "title",
+            "key": "╭─ ",
+            "format": "{1}@{2}",
+            //"keyColor": "blue"
+        },
+        {
+            "type": "os",
+            "key": "├─ ", // Just get your distro's logo off nerdfonts.com
+            //"keyColor": "blue"
+        },
+        {
+            "type": "kernel",
+            "key": "├─ ",
+            "format": "{1} {2}",
+            //"keyColor": "blue"
+        },
+        {
+            "type": "wm",
+            "key": "├─ ",
+            //"keyColor": "yellow"
+        },
+        {
+            "type": "shell",
+            "key": "├─ ",
+            //"keyColor": "yellow"
+        },
+        {
+            "type": "terminal",
+            "key": "╰─ ",
+            //"keyColor": "yellow"
+        }
+    ]
+}
