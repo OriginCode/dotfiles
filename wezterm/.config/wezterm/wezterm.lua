@@ -16,9 +16,10 @@ local extract_tab_bar_colors_from_theme = function(theme_name)
       inactive_titlebar_bg = wezterm.color.parse(wez_theme.background):darken(0.8),
     },
     tab_bar_colors = {
+      background = wez_theme.background,
       inactive_tab_edge = wezterm.color.parse(wez_theme.background):darken(0.8),
       active_tab = {
-        bg_color = wez_theme.brights[3],
+        bg_color = wez_theme.brights[4],
         fg_color = wez_theme.background,
       },
       inactive_tab = {
@@ -34,14 +35,13 @@ local extract_tab_bar_colors_from_theme = function(theme_name)
         fg_color = wez_theme.foreground,
       },
       new_tab_hover = {
-        bg_color = wez_theme.brights[3],
+        bg_color = wez_theme.brights[4],
         fg_color = wez_theme.background,
       },
     },
   }
 end
 
-local tab_bar_theme = extract_tab_bar_colors_from_theme("Gruvbox Dark (Gogh)")
 
 -- This table will hold the configuration.
 local config = {}
@@ -64,14 +64,33 @@ config.font = wezterm.font_with_fallback {
   "Iosevka Nerd Font Propo"
 }
 config.font_size = 12.0
-config.color_scheme = "Gruvbox Dark (Gogh)"
+config.color_scheme = "Gruvbox (Gogh)"
+local tab_bar_theme = extract_tab_bar_colors_from_theme(config.color_scheme)
 config.window_decorations = "RESIZE"
 -- config.enable_tab_bar = false
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.7
+function opaque_when_fullscreen(window)
+  local window_dims = window:get_dimensions()
+  local overrides = window:get_config_overrides() or {}
+  if window_dims.is_full_screen then
+    overrides.window_background_opacity = 1.0
+  else
+    overrides.window_background_opacity = 0.7
+  end
+  window:set_config_overrides(overrides)
+end
+wezterm.on('window-resized', function(window, pane)
+  opaque_when_fullscreen(window)
+end)
+wezterm.on('window-config-reloaded', function(window)
+  opaque_when_fullscreen(window)
+end)
 config.term = "wezterm"
 -- config.default_prog = { '/usr/bin/zellij', 'a', '-c', 'main' }
 
 config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.window_frame = tab_bar_theme.window_frame_colors
 config.colors = {
   tab_bar = tab_bar_theme.tab_bar_colors,
 }

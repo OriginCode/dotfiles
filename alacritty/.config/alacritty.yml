@@ -4,39 +4,36 @@ TERM = "alacritty"
 [window]
 opacity = 0.9
 
-# Colors (GruvboxDark)
+# Colors (Gruvbox light)
 
-[colors.bright]
-black = '#928374'
-blue = '#83a598'
-cyan = '#8ec07c'
-green = '#b8bb26'
-magenta = '#d3869b'
-red = '#fb4934'
-white = '#ebdbb2'
-yellow = '#fabd2f'
-
-[colors.cursor]
-cursor = '#ebdbb2'
-text = '#282828'
-
-[colors.normal]
-black = '#282828'
-blue = '#458588'
-cyan = '#689d6a'
-green = '#98971a'
-magenta = '#b16286'
-red = '#cc241d'
-white = '#a89984'
-yellow = '#d79921'
-
+# Default colors
 [colors.primary]
-background = '#282828'
-foreground = '#ebdbb2'
+# hard contrast background = = '#f9f5d7'
+background = '#fbf1c7'
+# soft contrast background = = '#f2e5bc'
+foreground = '#3c3836'
 
-[colors.selection]
-background = '#665c54'
-text = '#ebdbb2'
+# Normal colors
+[colors.normal]
+black   = '#fbf1c7'
+red     = '#cc241d'
+green   = '#98971a'
+yellow  = '#d79921'
+blue    = '#458588'
+magenta = '#b16286'
+cyan    = '#689d6a'
+white   = '#7c6f64'
+
+# Bright colors
+[colors.bright]
+black   = '#928374'
+red     = '#9d0006'
+green   = '#79740e'
+yellow  = '#b57614'
+blue    = '#076678'
+magenta = '#8f3f71'
+cyan    = '#427b58'
+white   = '#3c3836'
 
 [font]
 size = 12

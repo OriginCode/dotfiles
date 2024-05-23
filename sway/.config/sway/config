@@ -286,7 +286,7 @@ output DP-1 pos 0 0
 #exec '~/.config/sway/scripts/mpvpaper.sh'
 output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
-output eDP-2 disable pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output eDP-1 disable pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 bindsym $mod+b output eDP-2 toggle
 
 #blur enable

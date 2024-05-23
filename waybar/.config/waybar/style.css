@@ -81,6 +81,10 @@ button:hover {
     border-radius: 0 5px 5px 0;
 }
 
+#workspaces button:first-child:last-child {
+    border-radius: 5px;
+}
+
 #workspaces button:hover {
     color: #d79921;
 }
