@@ -4,7 +4,7 @@ theme = "gruvbox-dark"
 #idle_bg = "#3B4252"
 
 [icons]
-icons = "awesome5"
+icons = "material-nf"
 
 [[block]]
 block = "focused_window"

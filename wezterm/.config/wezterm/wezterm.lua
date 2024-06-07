@@ -1,13 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
-local merge_tables = function(first_table, second_table)
-  for k, v in pairs(second_table) do
-    first_table[k] = v
-  end
-  return first_table
-end
-
 local extract_tab_bar_colors_from_theme = function(theme_name)
   local wez_theme = wezterm.color.get_builtin_schemes()[theme_name]
   return {
@@ -64,14 +57,14 @@ config.font = wezterm.font_with_fallback {
   "Iosevka Nerd Font Propo"
 }
 config.font_size = 12.0
-config.color_scheme = "Gruvbox (Gogh)"
+config.color_scheme = "Gruvbox Dark (Gogh)"
 local tab_bar_theme = extract_tab_bar_colors_from_theme(config.color_scheme)
 config.window_decorations = "RESIZE"
 -- config.enable_tab_bar = false
-config.window_background_opacity = 0.7
 function opaque_when_fullscreen(window)
   local window_dims = window:get_dimensions()
   local overrides = window:get_config_overrides() or {}
+
   if window_dims.is_full_screen then
     overrides.window_background_opacity = 1.0
   else
@@ -90,10 +83,15 @@ config.term = "wezterm"
 
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
 config.window_frame = tab_bar_theme.window_frame_colors
 config.colors = {
   tab_bar = tab_bar_theme.tab_bar_colors,
 }
+
+config.enable_wayland = false
+
+config.scrollback_lines = 100000
 
 config.unix_domains = {
   {

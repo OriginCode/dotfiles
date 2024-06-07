@@ -1,0 +1,12 @@
+import = [
+    "~/.config/alacritty/themes/themes/gruvbox_dark.toml"
+]
+
+[env]
+TERM = "alacritty"
+
+[window]
+opacity = 0.7
+
+[font]
+size = 12

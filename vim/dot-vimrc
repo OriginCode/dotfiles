@@ -37,6 +37,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
 Plug 'jalvesaq/Nvim-R'
+Plug 'jasonccox/vim-wayland-clipboard'
 call plug#end()
 
 syntax enable
@@ -44,7 +45,7 @@ syntax enable
 let g:airline_powerline_fonts = 1
 let g:gruvbox_italic = 1
 colorscheme gruvbox
-set background=light
+set background=dark
 if ! has("gui_running")
   hi! Normal ctermbg=NONE guibg=NONE
 endif
@@ -117,15 +118,6 @@ nmap <leader>l :bnext<CR>
 " Move to the previous buffer
 nmap <leader>h :bprevious<CR>
 
-" vim-lsp: Register rust-analyzer
-if executable('rust-analyzer')
-  au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Language Server',
-        \   'cmd': {server_info->['rust-analyzer']},
-        \   'whitelist': ['rust'],
-        \ })
-endif
-
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
@@ -139,15 +131,6 @@ let g:rustfmt_autosave = 1
 
 " disable copilot by default
 let b:copilot_enabled = 0
-
-" Typst LSP
-if executable('typst-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'typst-lsp',
-        \ 'cmd': {server_info->['typst-lsp']},
-        \ 'allowlist': ['typst'],
-        \ })
-endif
 
 " ultisnips keybindings
 let g:UltiSnipsExpandTrigger="<c-e>"
