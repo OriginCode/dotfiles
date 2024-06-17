@@ -34,6 +34,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime'
+Plug 'kovisoft/paredit'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
 Plug 'jalvesaq/Nvim-R'
@@ -130,7 +131,7 @@ let g:rustfmt_autosave = 1
 "   \ foldtext=lsp#ui#vim#folding#foldtext()
 
 " disable copilot by default
-let b:copilot_enabled = 0
+" let b:copilot_enabled = 0
 
 " ultisnips keybindings
 let g:UltiSnipsExpandTrigger="<c-e>"
@@ -138,11 +139,12 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " vim-slime target
-let g:slime_target = "wezterm"
-let g:slime_default_config = {"pane_direction": "right"}
+" let g:slime_target = "wezterm"
+" let g:slime_default_config = {"pane_direction": "down"}
 " let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-" let g:slime_target = "vimterminal"
-" let g:slime_vimterminal_cmd = "racket"
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "racket"
+let g:slime_vimterminal_config = {"term_finish": "close", "curwin": 1}
 
 " workaround for conflict with vim-slime
 nnoremap <C-c> <nop>
@@ -176,3 +178,26 @@ let R_objbr_opendf = 1    " Show data.frames elements
 let R_objbr_openlist = 1  " Show lists elements
 let R_rconsole_width = 0
 let R_rconsole_height = 10
+
+" Racket REPL
+let s:racket_repl_height = 15
+function RacketRepl()
+  let filename = expand('%:t')
+  cd %:p:h
+  exe "belowright " .. s:racket_repl_height .. " split"
+  if !exists('g:slime_vimterminal_config')
+    let s:bufnr = term_start('racket')
+  else
+    let s:bufnr = term_start('racket', g:slime_vimterminal_config)
+  endif
+  call term_sendkeys(s:bufnr, ',enter "' .. filename .. "\"\n")
+  wincmd p
+endfunction
+
+function SlimeOverrideConfig()
+  if exists('s:bufnr')
+    let b:slime_config = {"bufnr": s:bufnr}
+  endif
+endfunction
+
+autocmd BufRead * if &filetype == 'racket' | call RacketRepl() | endif
