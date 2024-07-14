@@ -285,32 +285,32 @@ bindsym XF86AudioLowerVolume exec amixer --card 1 sset 'Master' 5-
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Border
-#default_border none
-#default_floating_border none
-default_border normal 0
-default_floating_border normal 0
-#client.<class>         <border>        <background>    <text>  <indicator>
-client.focused          $bgalpha        $bgalpha        $fg     $bgalpha
-client.focused_inactive $bgalpha        $darkgrayalpha  $fg4    $bgalpha
-client.unfocused        $darkgrayalpha  $darkgrayalpha  $fg4    $darkgrayalpha
-client.urgent           $purplealpha    $purplealpha    $fg     $purplealpha
-title_align center
+default_border none
+default_floating_border none
+#default_border normal 0
+#default_floating_border normal 0
+##client.<class>         <border>        <background>    <text>  <indicator>
+#client.focused          $bgalpha        $bgalpha        $fg     $bgalpha
+#client.focused_inactive $bgalpha        $darkgrayalpha  $fg4    $bgalpha
+#client.unfocused        $darkgrayalpha  $darkgrayalpha  $fg4    $darkgrayalpha
+#client.urgent           $purplealpha    $purplealpha    $fg     $purplealpha
+#title_align center
 
 # Dual monitors
 output DP-1 pos 0 0
 #exec '~/.config/sway/scripts/mpvpaper.sh'
-output DP-1 pos 0 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output DP-1 pos 0 840 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
 output eDP-1 disable pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 bindsym $mod+b output eDP-1 toggle
 
-# SwayFX
-#blur enable
-#corner_radius 5
-#shadows enable
-#shadow_blur_radius 15
-
 default_orientation horizontal
+
+# SwayFX
+blur enable
+corner_radius 5
+shadows enable
+shadow_blur_radius 15
 
 # Set keyboard layout
 input type:keyboard xkb_layout us

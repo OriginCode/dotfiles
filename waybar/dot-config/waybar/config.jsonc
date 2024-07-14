@@ -3,13 +3,13 @@
     "output": ["DP-1", "eDP-2"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    // "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
-        //"sway/window",
+        "sway/window",
         "sway/mode",
         "sway/scratchpad"
     ],
@@ -107,7 +107,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a %F}"
     },
     "custom/weather": {
         "format": "{}°",
@@ -170,7 +171,7 @@
     "modules-center": [
     ],
     "modules-right": [
-        //"sway/window",
+        "sway/window",
         "clock"
     ],
     "sway/workspaces": {
@@ -206,6 +207,7 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a %F}"
     }
 }]

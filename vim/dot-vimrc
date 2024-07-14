@@ -21,6 +21,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'mhinz/vim-startify'
@@ -180,7 +181,7 @@ let R_rconsole_width = 0
 let R_rconsole_height = 10
 
 " Racket REPL
-let s:racket_repl_height = 15
+let s:racket_repl_height = 10
 function RacketRepl()
   let filename = expand('%:t')
   cd %:p:h
@@ -191,7 +192,7 @@ function RacketRepl()
     let s:bufnr = term_start('racket', g:slime_vimterminal_config)
   endif
   call term_sendkeys(s:bufnr, ',enter "' .. filename .. "\"\n")
-  wincmd p
+  call win_gotoid(s:bufnr)
 endfunction
 
 function SlimeOverrideConfig()
@@ -200,4 +201,53 @@ function SlimeOverrideConfig()
   endif
 endfunction
 
-autocmd BufRead * if &filetype == 'racket' | call RacketRepl() | endif
+command Racket call RacketRepl()
+" autocmd BufRead * if &filetype == 'racket' | call RacketRepl() | endif
+
+" LSP Setup
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" Taplo (TOML) LSP
+" FIXME: vim-lsp-settings does not handle the latest version of taplo
+" correctly
+if executable('taplo')
+  augroup lsp_register_taplo
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'taplo',
+          \ 'cmd': {server_info->['taplo', 'lsp', 'stdio']},
+          \ 'allowlist': ['toml'],
+          \ 'workspace_config': {},
+          \ })
+  augroup END
+endif
+
+" Show date in airline
+let g:airline#extensions#clock#format = '%F'
