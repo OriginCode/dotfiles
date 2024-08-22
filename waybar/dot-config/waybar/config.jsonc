@@ -1,6 +1,142 @@
 // -*- mode: jsonc -*-
 [{
-    "output": ["DP-1", "eDP-2"],
+    "output": ["DP-1"],
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    // "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "sway/window",
+        "sway/mode",
+        "sway/scratchpad"
+    ],
+    "modules-center": [
+    ],
+    "modules-right": [
+        "cava",
+        "mpris",
+        "idle_inhibitor",
+        "load",
+	"wireplumber",
+        "custom/weather",
+        "clock",
+        "tray"
+    ],
+    // Modules configuration
+    "sway/workspaces": {
+        "all-outputs": false,
+        "warp-on-scroll": false,
+        "enable-bar-scroll": true,
+        "disable-scroll-wraparound": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "9": "",
+            "10": ""
+        }
+    },
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 80,
+        "all-outputs": true
+    },
+    "cava": {
+	//"cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+	"framerate": 30,
+	"autosens": 1,
+	"bars": 14,
+	"lower_cutoff_freq": 50,
+	"higher_cutoff_freq": 10000,
+	"method": "pulse",
+	"source": "auto",
+	"stereo": true,
+	"bar_delimiter": 0,
+	"noise_reduction": 0.77,
+	"input_delay": 2,
+        "hide_on_silence": true,
+	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+	"actions": {
+	    "on-click-right": "mode"
+	}
+    },
+    "mpris": {
+        "player": "Feishin",
+ 	"format": " {status_icon} {dynamic}",
+        "interval": 1,
+        "dynamic-len": 60,
+	"status-icons": {
+		"playing": "▶",
+		"paused": "⏸",
+		"stopped": ""
+	},
+	"dynamic-order": ["title", "artist"],
+	//"ignored-players": ["firefox"]
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+    "load": {
+        "format": " {}"
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a %F}"
+    },
+    "custom/weather": {
+        "format": "{}°",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar -l zh-tw --icon-family nerd --location Seattle",
+        "return-type": "json"
+    },
+    "wireplumber": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-bluetooth-muted": "󰆪 {icon}",
+        "format-muted": "󰆪",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󰂑",
+            "headset": "󰂑",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    }
+},
+{
+    "output": ["eDP-2"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     // "height": 24, // Waybar height (to be removed for auto height)
@@ -69,6 +205,7 @@
 	}
     },
     "mpris": {
+        "player": "Feishin",
  	"format": " {status_icon} {dynamic}",
         "interval": 1,
         "dynamic-len": 60,
@@ -78,7 +215,7 @@
 		"stopped": ""
 	},
 	"dynamic-order": ["title", "artist"],
-	"ignored-players": ["firefox"]
+	//"ignored-players": ["firefox"]
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -155,7 +292,8 @@
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol"
     }
-},{
+},
+{
     "output": ["HDMI-A-1"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)

@@ -6,7 +6,7 @@ import = [
 TERM = "alacritty"
 
 [window]
-opacity = 0.7
+opacity = 0.9
 
 [font]
 size = 12

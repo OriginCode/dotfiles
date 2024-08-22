@@ -297,8 +297,8 @@ default_floating_border none
 #title_align center
 
 # Dual monitors
-output DP-1 pos 0 0
-#exec '~/.config/sway/scripts/mpvpaper.sh'
+#output DP-1 pos 0 840
+#exec_always '~/.config/sway/scripts/mpvpaper.sh'
 output DP-1 pos 0 840 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
 output eDP-1 disable pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
@@ -376,11 +376,8 @@ bindsym $mod+u exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Jashinch
 # Start programs
 exec mako
 exec fcitx5
-#exec flameshot
 exec blueman-applet
-#exec kdeconnect-indicator
 exec /usr/lib/libexec/polkit-kde-authentication-agent-1
-#exec redshift-gtk
 
 # Startup Applications
 #exec i3-msg 'workspace 1; exec wezterm'
@@ -395,10 +392,10 @@ for_window [app_id="firefox"] move to workspace $ws3
 for_window [app_id="thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
 for_window [class="easyeffects"] move to workspace $ws9
-for_window [class="feishin"] move to workspace $ws10
+for_window [app_id="feishin"] move to workspace $ws10
 exec wezterm
 exec telegram-desktop
-exec flatpak run chat.schildi.desktop
+#exec flatpak run chat.schildi.desktop
 exec firefox
 exec env MOZ_ENABLE_WAYLAND=1 thunderbird
 #exec flatpak run com.github.wwmm.easyeffects

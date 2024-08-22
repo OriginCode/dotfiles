@@ -57,9 +57,9 @@ config.font = wezterm.font_with_fallback {
   "Iosevka Nerd Font Propo"
 }
 config.font_size = 12.0
-config.color_scheme = "Gruvbox Dark (Gogh)"
+config.color_scheme = "Gruvbox (Gogh)"
 local tab_bar_theme = extract_tab_bar_colors_from_theme(config.color_scheme)
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 -- config.enable_tab_bar = false
 function opaque_when_fullscreen(window)
   local window_dims = window:get_dimensions()
@@ -68,7 +68,7 @@ function opaque_when_fullscreen(window)
   if window_dims.is_full_screen then
     overrides.window_background_opacity = 1.0
   else
-    overrides.window_background_opacity = 0.7
+    overrides.window_background_opacity = 0.9
   end
   window:set_config_overrides(overrides)
 end

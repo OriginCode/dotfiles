@@ -358,7 +358,7 @@ for_window [class="easyeffects"] move to workspace $ws9
 for_window [class="feishin"] move to workspace $ws10
 exec --no-startup-id wezterm
 exec --no-startup-id telegram-desktop
-exec --no-startup-id flatpak run chat.schildi.desktop
+#exec --no-startup-id flatpak run chat.schildi.desktop
 exec --no-startup-id firefox
 exec --no-startup-id thunderbird
 #exec --no-startup-id flatpak run com.github.wwmm.easyeffects

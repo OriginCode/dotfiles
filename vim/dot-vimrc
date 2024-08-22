@@ -47,7 +47,7 @@ syntax enable
 let g:airline_powerline_fonts = 1
 let g:gruvbox_italic = 1
 colorscheme gruvbox
-set background=dark
+set background=light
 if ! has("gui_running")
   hi! Normal ctermbg=NONE guibg=NONE
 endif
@@ -136,8 +136,8 @@ let g:rustfmt_autosave = 1
 
 " ultisnips keybindings
 let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " vim-slime target
 " let g:slime_target = "wezterm"
@@ -251,3 +251,7 @@ endif
 
 " Show date in airline
 let g:airline#extensions#clock#format = '%F'
+
+" set relative numbering and numbering
+set relativenumber
+set number

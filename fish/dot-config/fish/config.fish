@@ -15,10 +15,10 @@ if status is-interactive
 end
 
 #set -g theme_color_scheme nord
-set -g theme_display_user yes
-set -g theme_display_hostname yes
-set -g theme_display_date no
-set -g theme_show_exit_status yes
+#set -g theme_display_user yes
+#set -g theme_display_hostname yes
+#set -g theme_display_date no
+#set -g theme_show_exit_status yes
 
 set -x EDITOR vim
 set -x MANWIDTH 80
@@ -26,6 +26,8 @@ set -x MANWIDTH 80
 thefuck --alias | source
 
 starship init fish | source
+
+zoxide init fish | source
 
 # opam configuration
 source /home/origincode/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
