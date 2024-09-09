@@ -32,8 +32,6 @@ Plug 'alvan/vim-closetag'
 Plug 'lervag/vimtex'
 Plug 'kaarmu/typst.vim'
 Plug 'tpope/vim-sleuth'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime'
 Plug 'kovisoft/paredit'
 Plug 'liuchengxu/graphviz.vim'
@@ -132,12 +130,7 @@ let g:rustfmt_autosave = 1
 "   \ foldtext=lsp#ui#vim#folding#foldtext()
 
 " disable copilot by default
-" let b:copilot_enabled = 0
-
-" ultisnips keybindings
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let b:copilot_enabled = 0
 
 " vim-slime target
 " let g:slime_target = "wezterm"
@@ -219,8 +212,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    "nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    "nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')

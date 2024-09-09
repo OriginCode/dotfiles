@@ -89,7 +89,8 @@ config.colors = {
   tab_bar = tab_bar_theme.tab_bar_colors,
 }
 
-config.enable_wayland = false
+-- config.enable_wayland = false
+-- config.front_end = "WebGpu"
 
 config.scrollback_lines = 100000
 

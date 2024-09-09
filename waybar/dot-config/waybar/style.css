@@ -71,7 +71,6 @@ tooltip label {
 }
 
 window#waybar {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: Iosevka Nerd Font Propo, monospace;
     background-color: transparent;
     border-bottom: 0px;
@@ -166,6 +165,7 @@ button:hover {
 #battery,
 #backlight,
 #custom-weather,
+#custom-audio_idle_inhibitor,
 #wireplumber,
 #tray,
 #mpris,
