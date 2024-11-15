@@ -58,8 +58,6 @@ bindsym $mod+Shift+q kill
 
 # start wofi (a program launcher)
 bindsym $mod+d exec fuzzel
-bindsym $mod+q exec wofi -S run
-bindsym $mod+p exec ~/.config/sway/scripts/wofer/wofer
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -215,6 +213,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+input * {
+    repeat_rate 35
+}
+
 set $nord0   #2E3440
 set $nord1   #3B4252
 set $nord2   #434C5E
@@ -234,6 +236,8 @@ set $nord15  #B48EAD
 
 # Gruvbox Colors
 set $bg #282828
+set $bg1 #3c3836
+set $bg2 #504945
 set $fg #ebdbb2
 set $fg4 #a89984
 set $red #cc241d
@@ -285,23 +289,23 @@ bindsym XF86AudioLowerVolume exec amixer --card 1 sset 'Master' 5-
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Border
-default_border none
-default_floating_border none
-#default_border normal 0
-#default_floating_border normal 0
-##client.<class>         <border>        <background>    <text>  <indicator>
-#client.focused          $bgalpha        $bgalpha        $fg     $bgalpha
-#client.focused_inactive $bgalpha        $darkgrayalpha  $fg4    $bgalpha
-#client.unfocused        $darkgrayalpha  $darkgrayalpha  $fg4    $darkgrayalpha
-#client.urgent           $purplealpha    $purplealpha    $fg     $purplealpha
-#title_align center
+#default_border none
+#default_floating_border none
+default_border pixel 1
+default_floating_border normal 1
+#client.<class>         <border>        <background>    <text>  <indicator>
+client.focused          $bg2            $bg2            $fg     $bgalpha
+client.focused_inactive $bg2            $bg2            $fg4    $bgalpha
+client.unfocused        $darkgray       $darkgray       $fg4    $darkgrayalpha
+client.urgent           $purple         $purple         $fg     $purplealpha
+title_align center
 
 # Dual monitors
 #output DP-1 pos 0 840
 #exec_always '~/.config/sway/scripts/mpvpaper.sh'
-output DP-1 pos 0 840 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
-output HDMI-A-1 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
-output eDP-1 pos 3000 0 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output DP-1 mode 1920x1080 pos 0 840 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output HDMI-A-1 mode 1920x1080 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
+output eDP-1 mode 1920x1080 pos 1920 1920 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 bindsym $mod+b output eDP-1 toggle
 
 default_orientation horizontal
@@ -363,6 +367,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
 bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Hanabi.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Sukumizu.png fill'
 bindsym $mod+u exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Jashinchan.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+bindsym $mod+y exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/5_00_AM.jpg fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Gentiana.png fill'
+bindsym $mod+p exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_R18_Spread.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 #bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 #bindsym $mod+u exec 'pkill mpvpaper; ~/.config/sway/scripts/mpvpaper.sh'
 #bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
@@ -397,7 +403,7 @@ exec env GBM_BACKEND=nvidia-drm __GLX_VENDOR_LIBRARY_NAME=nvidia wezterm
 exec telegram-desktop
 #exec flatpak run chat.schildi.desktop
 exec firefox
-exec env MOZ_ENABLE_WAYLAND=1 thunderbird
+exec thunderbird
 #exec flatpak run com.github.wwmm.easyeffects
 exec feishin
 # exec vscode

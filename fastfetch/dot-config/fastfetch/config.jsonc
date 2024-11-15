@@ -4,14 +4,17 @@
 {
     "$schema": "./json_schema.json",
     "logo": {
-        "type": "iterm",
+        "type": "sixel",
         "source": "~/.face",
         "width": 16,
-        "height": 7,
+        "height": 6,
         "preserveAspectRatio": true
     },
     "display": {
-        "separator": " "
+        "separator": " ",
+        "color": {
+            "keys": "default"
+        }
     },
     "modules": [
         {

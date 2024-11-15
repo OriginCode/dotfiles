@@ -34,10 +34,13 @@ Plug 'kaarmu/typst.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'jpalardy/vim-slime'
 Plug 'kovisoft/paredit'
+Plug 'benknoble/vim-racket'
+Plug 'benknoble/scribble.vim'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
 Plug 'jalvesaq/Nvim-R'
 Plug 'jasonccox/vim-wayland-clipboard'
+Plug 'wellle/context.vim'
 call plug#end()
 
 syntax enable
@@ -197,6 +200,8 @@ endfunction
 command Racket call RacketRepl()
 " autocmd BufRead * if &filetype == 'racket' | call RacketRepl() | endif
 
+autocmd BufNewFile,BufRead * if &filetype == 'racket' | compiler racotest | endif
+
 " LSP Setup
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -212,8 +217,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    "nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    "nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-u> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
@@ -248,3 +253,10 @@ let g:airline#extensions#clock#format = '%F'
 " set relative numbering and numbering
 set relativenumber
 set number
+
+" line wrap at 80 col
+set textwidth=80
+set wrap
+
+" vim-lsp markdown rendering
+let g:markdown_fenced_languages = [ "console=$FILETYPE" ]

@@ -68,7 +68,7 @@ function opaque_when_fullscreen(window)
   if window_dims.is_full_screen then
     overrides.window_background_opacity = 1.0
   else
-    overrides.window_background_opacity = 0.9
+    overrides.window_background_opacity = 0.8
   end
   window:set_config_overrides(overrides)
 end
@@ -89,8 +89,15 @@ config.colors = {
   tab_bar = tab_bar_theme.tab_bar_colors,
 }
 
+config.window_padding = {
+  left = 20,
+  right = 20,
+  top = 20,
+  bottom = 20,
+}
+
 -- config.enable_wayland = false
--- config.front_end = "WebGpu"
+config.front_end = "WebGpu"
 
 config.scrollback_lines = 100000
 

@@ -49,7 +49,7 @@
         "all-outputs": true
     },
     "cava": {
-	//"cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+	//"cava_config": "$XDG_CONFIG_HOME/cava/config",
 	"framerate": 30,
 	"autosens": 1,
 	"bars": 14,
@@ -68,7 +68,7 @@
 	}
     },
     "mpris": {
-        "player": "Feishin",
+        //"player": "Feishin",
  	"format": " {status_icon} {dynamic}",
         "interval": 1,
         "dynamic-len": 60,
@@ -323,7 +323,7 @@
     "output": ["HDMI-A-1"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    // "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -349,7 +349,7 @@
             "3": "",
             "4": "",
             "5": "",
-            "9": "󱤨",
+            "9": "",
             "10": ""
         }
     },
