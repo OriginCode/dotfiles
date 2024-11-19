@@ -260,3 +260,7 @@ set wrap
 
 " vim-lsp markdown rendering
 let g:markdown_fenced_languages = [ "console=$FILETYPE" ]
+
+" change cursor depending on the mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
