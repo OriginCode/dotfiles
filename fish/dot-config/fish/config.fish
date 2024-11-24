@@ -1,12 +1,4 @@
-#set -g fish_greeting
-
-function fish_greeting
-    set task_count (task status:pending count)
-    if test $task_count -gt 0
-        echo "You have $task_count task(s) to do!"
-        task
-    end
-end
+set -g fish_greeting
 
 fish_vi_key_bindings
 
@@ -23,13 +15,6 @@ end
 set -x EDITOR vim
 set -x MANWIDTH 80
 
-thefuck --alias | source
-
-starship init fish | source
+fish_add_path $HOME/.local/bin
 
 zoxide init fish | source
-
-# opam configuration
-source /home/origincode/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/origincode/.ghcup/bin # ghcup-env
