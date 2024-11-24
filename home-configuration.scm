@@ -21,7 +21,8 @@
                                             "vim-full"
                                             "rust-analyzer"
                                             "fastfetch"
-                                            "stow")))
+                                            "stow"
+                                            "eza")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
@@ -33,8 +34,10 @@
      ;           (layout 'stow)
      ;           (directories (list "vim" "fastfetch"))))
 
+     ;; Workaround for missing `--dotfiles` arg of stow
      (service home-files-service-type
-              `((".vimrc" ,(local-file "./vim/dot-vimrc"))))
+              `((".vimrc" ,(local-file "./vim/dot-vimrc"))
+                (".tmux.conf" ,(local-file "./tmux/dot-tmux.conf"))))
 
      (service home-fish-service-type
               (home-fish-configuration
@@ -45,4 +48,17 @@
                            ,(plain-file "disable-greeting.fish"
                                         "set -g fish_greeting")))
                 (environment-variables '(("EDITOR" . "vim")
-                                         ("MANWIDTH" . "80"))))))))
+                                         ("MANWIDTH" . "80")))
+                (aliases '(("l" . "eza -lah")
+                           ("ll" . "eza -l")
+                           ("la" . "eza -a")
+                           ("lt" . "eza -lahT")
+                           ("ls" . "eza")
+                           ("v" . "vim")
+                           ("pd" . "prevd")
+                           ("nd" . "nextd")
+                           ("sysupg"
+                            .
+                            "guix pull; and sudo guix reconfigure /etc/config.scm; and guix home reconfigure dotfiles/home-configuration.scm")))
+                (abbreviations '(("gcsm" . "git commit -S -s -m")))))
+     )))
