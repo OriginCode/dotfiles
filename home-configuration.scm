@@ -15,14 +15,15 @@
 (home-environment
   ;; Below is the list of packages that will show up in your
   ;; Home profile, under ~/.guix-home/profile.
-  (packages (specifications->packages (list "zoxide"
-                                            "racket-minimal"
-                                            "rust-cargo"
-                                            "vim-full"
-                                            "rust-analyzer"
-                                            "fastfetch"
-                                            "stow"
-                                            "eza")))
+  (packages (specifications->packages
+              (list "zoxide"
+                    "racket-minimal"
+                    "rust-cargo"
+                    "vim-full"
+                    "rust-analyzer"
+                    "fastfetch"
+                    "stow"
+                    "eza")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
