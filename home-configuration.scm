@@ -18,9 +18,7 @@
   (packages (specifications->packages
               (list "zoxide"
                     "racket-minimal"
-                    "rust-cargo"
-                    "vim-full"
-                    "rust-analyzer"
+                    "vim"
                     "fastfetch"
                     "stow"
                     "eza")))
@@ -54,7 +52,6 @@
                            ("ll" . "eza -l")
                            ("la" . "eza -a")
                            ("lt" . "eza -lahT")
-                           ("ls" . "eza")
                            ("v" . "vim")
                            ("pd" . "prevd")
                            ("nd" . "nextd")
