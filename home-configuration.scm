@@ -10,8 +10,7 @@
              (guix gexp)
              (gnu home services)
              (gnu home services dotfiles)
-             (gnu home services shells)
-             (gnu home services syncthing))
+             (gnu home services shells))
 
 (home-environment
   ;; Below is the list of packages that will show up in your
@@ -75,6 +74,4 @@
                             .
                             "guix pull; and sudo guix reconfigure /etc/config.scm; and guix home reconfigure dotfiles/home-configuration.scm")))
                 (abbreviations '(("gcsm" . "git commit -S -s -m")))))
-
-     (service home-syncthing-service-type)
      )))
