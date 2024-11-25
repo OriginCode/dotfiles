@@ -10,7 +10,8 @@
              (guix gexp)
              (gnu home services)
              (gnu home services dotfiles)
-             (gnu home services shells))
+             (gnu home services shells)
+             (gnu home services syncthing))
 
 (home-environment
   ;; Below is the list of packages that will show up in your
@@ -26,7 +27,7 @@
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
   (services
-   (list 
+   (list
      ;; `--dotfiles` option is unusable
      ;(service home-dotfiles-service-type
      ;         (home-dotfiles-configuration
@@ -34,9 +35,24 @@
      ;           (directories (list "vim" "fastfetch"))))
 
      ;; Workaround for missing `--dotfiles` arg of stow
-     (service home-files-service-type
-              `((".vimrc" ,(local-file "./vim/dot-vimrc"))
-                (".tmux.conf" ,(local-file "./tmux/dot-tmux.conf"))))
+     (service home-files-service-type)
+     (simple-service 'vimrc-file
+                     home-files-service-type
+                     `((".vimrc" ,(local-file "./vim/dot-vimrc"))))
+     (simple-service 'tmux-conf-file
+                     home-files-service-type
+                     `((".tmux.conf" ,(local-file "./tmux/dot-tmux.conf"))))
+     (simple-service 'gitconfig-file
+                     home-files-service-type
+                     `((".gitconfig"
+                        ,(plain-file
+                           "gitconfig"
+                           "\
+[init]
+	defaultBranch = master
+[user]
+	email = self@origincode.me
+	name = Kaiyang Wu"))))
 
      (service home-fish-service-type
               (home-fish-configuration
@@ -59,4 +75,6 @@
                             .
                             "guix pull; and sudo guix reconfigure /etc/config.scm; and guix home reconfigure dotfiles/home-configuration.scm")))
                 (abbreviations '(("gcsm" . "git commit -S -s -m")))))
+
+     (service home-syncthing-service-type)
      )))
