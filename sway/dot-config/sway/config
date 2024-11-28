@@ -366,9 +366,9 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
 bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Hanabi.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Sukumizu.png fill'
-bindsym $mod+u exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Jashinchan.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+bindsym $mod+u exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/MashiroNekoPantu.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 bindsym $mod+y exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/5_00_AM.jpg fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Gentiana.png fill'
-bindsym $mod+p exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_R18_Spread.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
+bindsym $mod+p exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_R18_Spread.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/akipeko-shojo-r18.jpeg fill'
 #bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 #bindsym $mod+u exec 'pkill mpvpaper; ~/.config/sway/scripts/mpvpaper.sh'
 #bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
