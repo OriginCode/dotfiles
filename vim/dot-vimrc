@@ -26,8 +26,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-obsession'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-Plug 'github/copilot.vim'
 Plug 'alvan/vim-closetag'
 Plug 'lervag/vimtex'
 Plug 'kaarmu/typst.vim'
@@ -38,8 +36,6 @@ Plug 'benknoble/vim-racket'
 Plug 'benknoble/scribble.vim'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
-Plug 'jalvesaq/Nvim-R'
-Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'wellle/context.vim'
 call plug#end()
 
