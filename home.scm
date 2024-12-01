@@ -26,7 +26,11 @@
                  "fastfetch"
                  "python-minimal"
                  ;"stow"
-                 ;"eza"
+                 "eza"
+                 "zoxide"
+                 "racket-minimal"
+                 "rust-analyzer"
+                 "vim-guix-vim"
                  )))
 
   ;; Below is the list of Home services.  To search for available
@@ -63,8 +67,8 @@
      
      (service home-fish-service-type
               (home-fish-configuration
-                (config `(;,(plain-file "zoxide-init.fish"
-                          ;             "zoxide init fish | source")
+                (config `(,(plain-file "zoxide-init.fish"
+                                       "zoxide init fish | source")
                            ,(plain-file "local-bin-path.fish"
                                         "fish_add_path $HOME/.local/bin")
                            ,(plain-file "disable-greeting.fish"
