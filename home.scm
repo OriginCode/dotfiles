@@ -25,6 +25,7 @@
                 ,@%custom-fonts-packages
                  "fastfetch"
                  "python-minimal"
+                 "weechat"
                  ;"stow"
                  "eza"
                  "zoxide"

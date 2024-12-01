@@ -37,6 +37,7 @@ Plug 'benknoble/scribble.vim'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
 Plug 'wellle/context.vim'
+Plug 'hiphish/info.vim'
 call plug#end()
 
 syntax enable
