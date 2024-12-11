@@ -1,19 +1,24 @@
 (define-module (oc configurations sway-conf)
-  #:export (%custom-sway-packages
-            custom-sway-configuration)
+  #:export (custom-sway-configuration)
 
   #:use-module (guix gexp)
   #:use-module (gnu home services sway)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages wm)
-  #:use-module (gnu packages image))
-
-(define %custom-sway-packages
-  (list "foot" "grim" "wl-clipboard"))
+  #:use-module (gnu packages image)
+  #:use-module (gnu packages fcitx5)
+  #:use-module (gnu packages vnc))
 
 (define custom-sway-configuration
   (sway-configuration
+    (packages (list
+                foot
+                grim
+                wl-clipboard
+                wayvnc
+                swayfx
+                ))
     (variables
       `((mod . "Mod1")
         (up . "l")
@@ -104,7 +109,9 @@
           . ,#~(string-append "exec " #$grim "/bin/grim - | " #$wl-clipboard "/bin/wl-copy"))
         ))
 
-    (startup-programs `(,#~(string-append #$foot "/bin/foot")))
+    (startup-programs `(,#~(string-append #$foot "/bin/foot")
+                         ;,#~(string-append #$fcitx5 "/bin/fcitx5")
+                         ))
 
     (bar (sway-bar
            (status-command "while date +'%Y-%m-%d %X'; do sleep 1; done")))
@@ -117,6 +124,16 @@
                 (extra-content '("natural_scroll enabled"
                                  "middle_emulation enabled")))))
 
+    (outputs (list
+               (sway-output
+                 (identifier '*)
+                 (background "~/Pictures/31_celica.png"))))
+
     (extra-content '("font pango:monospace 11"
                      "floating_modifier $mod"
-                     ))))
+                     ; SwayFX
+                     "blur enable"
+                     "corner_radius 5"
+                     "shadows enable"
+                     "shadow_blur_radius 15"))
+    ))
