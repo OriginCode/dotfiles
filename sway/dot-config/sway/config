@@ -58,6 +58,9 @@ bindsym $mod+Shift+q kill
 
 # start wofi (a program launcher)
 bindsym $mod+d exec fuzzel
+bindsym $mod+q exec $(fuzzel -d)
+bindsym $mod+z exec rofi-rbw --selector wofi
+bindsym $mod+Shift+z exec rofi-rbw --selector wofi --action copy
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -278,7 +281,7 @@ set $purplealpha #b16286cc
 #}
 
 bar {
-    swaybar_command waybar
+    #swaybar_command waybar
 }
 
 bindsym $mod+n exec echo "" | dmenu -p "New name for this workspace" | xargs -r swaymsg rename workspace to
@@ -303,8 +306,8 @@ title_align center
 # Dual monitors
 #output DP-1 pos 0 840
 #exec_always '~/.config/sway/scripts/mpvpaper.sh'
-output DP-1 mode 1920x1080 pos 0 840 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
-output HDMI-A-1 mode 1920x1080 pos 1920 0 transform 270 bg ~/Images/AOSC_Gruvbox.png fill
+output DP-1 mode 1920x1080 pos 0 840 bg ~/Images/Wallpapers/Yume_no_nedoko.png fill
+output HDMI-A-1 mode 1920x1080 pos 1920 0 transform 270 bg ~/Images/Wallpapers/Sakura_Yoru.png fill
 output eDP-1 mode 1920x1080 pos 1920 1920 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
 bindsym $mod+b output eDP-1 toggle
 
@@ -367,7 +370,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
 bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Hanabi.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Sukumizu.png fill'
 bindsym $mod+u exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/MashiroNekoPantu.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
-bindsym $mod+y exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/5_00_AM.jpg fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Gentiana.png fill'
+bindsym $mod+y exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Sparkle.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Ginkgo.png fill'
 bindsym $mod+p exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_R18_Spread.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/akipeko-shojo-r18.jpeg fill'
 #bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 #bindsym $mod+u exec 'pkill mpvpaper; ~/.config/sway/scripts/mpvpaper.sh'
@@ -395,6 +398,7 @@ for_window [app_id="org.wezfurlong.wezterm"] move to workspace $ws1
 for_window [app_id="org.telegram"] move to workspace $ws2
 for_window [class="SchildiChat"] move to workspace $ws2
 for_window [app_id="firefox"] move to workspace $ws3
+for_window [app_id="org.qutebrowser.qutebrowser"] move to workspace $ws3
 for_window [app_id="thunderbird"] move to workspace $ws4
 for_window [class="Code - OSS"] move to workspace $ws5
 for_window [class="easyeffects"] move to workspace $ws9
@@ -402,11 +406,9 @@ for_window [class="feishin"] move to workspace $ws10
 exec env GBM_BACKEND=nvidia-drm __GLX_VENDOR_LIBRARY_NAME=nvidia wezterm
 exec telegram-desktop
 #exec flatpak run chat.schildi.desktop
-exec firefox
-exec thunderbird
-#exec flatpak run com.github.wwmm.easyeffects
-exec feishin
-# exec vscode
+#exec firefox
+exec qutebrowser
+#exec feishin
 for_window [class="com.vixalien.sticky"] sticky enable
 for_window [class="com.vixalien.sticky"] floating enable
 

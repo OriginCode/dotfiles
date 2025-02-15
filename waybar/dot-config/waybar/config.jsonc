@@ -20,7 +20,7 @@
         "mpris",
         "custom/audio_idle_inhibitor",
         "idle_inhibitor",
-        "load",
+        //"load",
 	"wireplumber",
         "custom/weather",
         "clock",
@@ -45,14 +45,14 @@
     },
     "sway/window": {
         "format": "{title}",
-        "max-length": 80,
+        "max-length": 60,
         "all-outputs": true
     },
     "cava": {
 	//"cava_config": "$XDG_CONFIG_HOME/cava/config",
 	"framerate": 30,
 	"autosens": 1,
-	"bars": 14,
+	"bars": 12,
 	"lower_cutoff_freq": 50,
 	"higher_cutoff_freq": 10000,
 	"method": "pulse",
@@ -69,7 +69,7 @@
     },
     "mpris": {
         //"player": "Feishin",
- 	"format": " {status_icon} {dynamic}",
+ 	"format": "{status_icon} {dynamic}",
         "interval": 1,
         "dynamic-len": 60,
 	"status-icons": {
@@ -126,7 +126,7 @@
         "format": "{}°",
         "tooltip": true,
         "interval": 3600,
-        "exec": "wttrbar -l zh-tw --icon-family nerd --location Seattle",
+        "exec": "/home/origincode/.local/bin/wttrbar -l zh-tw --icon-family nerd --location Seattle",
         "return-type": "json"
     },
     "wireplumber": {
@@ -169,7 +169,7 @@
         "mpris",
         "custom/audio_idle_inhibitor",
         "idle_inhibitor",
-        "load",
+        //"load",
 	"wireplumber",
         "backlight",
         "custom/weather",
@@ -196,7 +196,7 @@
     },
     "sway/window": {
         "format": "{title}",
-        "max-length": 80,
+        "max-length": 60,
         "all-outputs": true
     },
     "cava": {

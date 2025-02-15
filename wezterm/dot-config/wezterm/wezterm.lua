@@ -68,7 +68,7 @@ function opaque_when_fullscreen(window)
   if window_dims.is_full_screen then
     overrides.window_background_opacity = 1.0
   else
-    overrides.window_background_opacity = 0.8
+    overrides.window_background_opacity = 0.9
   end
   window:set_config_overrides(overrides)
 end
@@ -97,7 +97,7 @@ config.window_padding = {
 }
 
 -- config.enable_wayland = false
-config.front_end = "WebGpu"
+-- config.front_end = "WebGpu"
 
 config.scrollback_lines = 100000
 
@@ -111,7 +111,7 @@ config.unix_domains = {
 -- `wezterm connect unix` by default, connecting to the unix
 -- domain on startup.
 -- If you prefer to connect manually, leave out this line.
--- config.default_gui_startup_args = { 'connect', 'unix' }
+config.default_gui_startup_args = { 'connect', 'unix' }
 
 -- and finally, return the configuration to wezterm
 return config

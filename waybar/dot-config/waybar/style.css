@@ -1,5 +1,6 @@
 /* colors */
 /* Gruvbox Dark */
+@define-color lightbg   #fbf1c7;
 @define-color bg        #282828;
 @define-color fglight   #282828;
 @define-color bg1       #3c3836;
@@ -160,7 +161,6 @@ button:hover {
 #cava,
 #scratchpad,
 #mode,
-#window,
 #clock,
 #battery,
 #backlight,
@@ -173,6 +173,12 @@ button:hover {
     padding: 0 10px;
     background-color: @bg;
     color: @fg;
+}
+
+#window {
+    padding: 0 10px;
+    background-color: @fg;
+    color: @bg1;
 }
 
 #mode {
