@@ -6,6 +6,18 @@
 
 config_version: 2
 settings:
+  aliases:
+    global:
+      Zotero: hint links userscript zotero
+      json: spawn --userscript format_json
+      q: close
+      qa: quit
+      w: session-save
+      wq: quit --save
+      wqa: quit --save
+      zotero: spawn --userscript zotero
+  auto_save.session:
+    global: true
   bindings.commands:
     global:
       insert:
@@ -21,10 +33,129 @@ settings:
         <Meta+7>: tab-focus 7
         <Meta+8>: tab-focus 8
         <Meta+9>: tab-focus -1
+  colors.webpage.darkmode.enabled:
+    global: false
   colors.webpage.preferred_color_scheme:
     global: dark
+  content.blocking.enabled:
+    global: true
+  content.cookies.accept:
+    global: all
+  content.desktop_capture:
+    https://meet.edison.network: true
+  content.geolocation:
+    https://amap.com: true
+    https://map.baidu.com: true
+    https://openweathermap.org: true
+    https://wplace.live: true
+    https://www.bestbuy.ca: true
+    https://www.genelec.com: true
+    https://www.google.com: true
+    https://www.speedtest.net: true
+    https://www.td.com: true
+  content.headers.user_agent:
+    global: Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko)
+      {upstream_browser_key}/{upstream_browser_version_short} Safari/{webkit_version}
+  content.javascript.clipboard:
+    https://1sfu-my.sharepoint.com: access-paste
+    https://aistudio.google.com: access-paste
+    https://anime-sedai.egoist.dev: access-paste
+    https://app.cinny.in: access-paste
+    https://cg.163.com: access-paste
+    https://chat.origincode.me: access-paste
+    https://codeberg.org: access-paste
+    https://crates.io: access-paste
+    https://docs.docker.com: access-paste
+    https://docs.gitlab.com: access-paste
+    https://docs.oracle.com: access-paste
+    https://docs.redhat.com: access-paste
+    https://drive.google.com: access-paste
+    https://forgejo.ellis.link: access-paste
+    https://github.com: access-paste
+    https://gitlab.archlinux.org: access-paste
+    https://grok.com: access-paste
+    https://help.mikrotik.com: access-paste
+    https://hub.docker.com: access-paste
+    https://kernelsu-next.github.io: access-paste
+    https://kernelsu.org: access-paste
+    https://ksunext.org: access-paste
+    https://learning.oreilly.com: access-paste
+    https://leetcode.com: access-paste
+    https://m3.material.io: access-paste
+    https://my.wealthsimple.com: access-paste
+    https://new.express.adobe.com: access-paste
+    https://studio.youtube.com: access-paste
+    https://www.claude.com: access-paste
+    https://www.google.com: access-paste
+    https://www.heroui.com: access-paste
+    https://xnh.app: access-paste
+  content.media.audio_capture:
+    https://chatgpt.com: true
+    https://meet.edison.network: true
+    https://meet.google.com: true
+    https://teams.microsoft.com: true
+  content.media.audio_video_capture:
+    https://meet.google.com: true
+    https://teams.microsoft.com: true
+  content.media.video_capture:
+    https://meet.edison.network: true
+    https://meet.google.com: true
+    https://teams.microsoft.com: true
+    https://webcamtests.com: true
+  content.mouse_lock:
+    https://cth451.me: true
+  content.notifications.enabled:
+    https://app.cinny.in: true
+    https://app.element.io: true
+    https://bbs.aosc.io: true
+    https://calendar.google.com: true
+    https://cg.163.com: true
+    https://chat.origincode.me: true
+    https://fluffychat.im: true
+    https://git.cth451.me: true
+    https://gitlab.com: true
+    https://member.bilibili.com: true
+    https://tetr.io: true
+    https://www.facebook.com: true
+    https://www.ubereats.com: true
+    https://www.uscardforum.com: true
+  content.proxy:
+    global: system
+  content.register_protocol_handler:
+    https://calendar.google.com?cid=%25s: true
+    https://outlook.office.com?mailtouri=%25s: false
+  fileselect.folder.command:
+    global:
+    - foot
+    - yazi
+    - --chooser-file
+    - '{}'
+  fileselect.handler:
+    global: external
+  fileselect.multiple_files.command:
+    global:
+    - foot
+    - yazi
+    - --chooser-file
+    - '{}'
+  fileselect.single_file.command:
+    global:
+    - foot
+    - yazi
+    - --chooser-file
+    - '{}'
+  fonts.default_family:
+    global: M+CodeLat50 Nerd Font Propo
   fonts.default_size:
     global: 12pt
+  fonts.web.family.fixed:
+    global: M+CodeLat50 Nerd Font Mono
+  fonts.web.size.default_fixed:
+    global: 16
+  hints.border:
+    global: '1px solid #E3BE23'
+  input.mode_override:
+    global: null
   statusbar.position:
     global: bottom
   tabs.max_width:
@@ -33,3 +164,10 @@ settings:
     global: left
   tabs.width:
     global: 10%
+  url.default_page:
+    global: https://google.com/
+  url.searchengines:
+    global:
+      DEFAULT: https://google.com/search?q={}
+  url.start_pages:
+    global: https://google.com

@@ -1,5 +1,12 @@
+daemonize
+show-failed-attempts
+clock
+screenshot
+effect-blur=6x6
+effect-vignette=0.65:1
 color=32302f
-font=M+1Code Nerd Font
+font=Sarasa Term TC
+indicator
 indicator-radius=120
 indicator-thickness=16
 line-color=32302f
@@ -21,3 +28,9 @@ text-clear-color=fbf1c7
 inside-clear-color=8ec07c
 ring-clear-color=8ec07c
 line-clear-color=8ec07c
+grace=0.5
+grace-no-mouse
+grace-no-touch
+datestr=%a, %B %e
+timestr=%I:%M %p
+fade-in=0.15

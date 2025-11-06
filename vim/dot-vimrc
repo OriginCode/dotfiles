@@ -39,16 +39,25 @@ Plug 'benknoble/scribble.vim'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'luochen1990/rainbow'
 Plug 'jalvesaq/Nvim-R'
-Plug 'jasonccox/vim-wayland-clipboard'
+" Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'wellle/context.vim'
 call plug#end()
 
 syntax enable
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|rst|org|text|asciidoc|tex|mail|typ'
 let g:gruvbox_italic = 1
 colorscheme gruvbox
-set background=light
+
+" dark colorscheme in SSH
+if empty($SSH_CLIENT) && empty($SSH_TTY) && ! has('gui_running')
+  set background=dark
+else
+  set background=dark
+endif
+
 if ! has("gui_running")
   hi! Normal ctermbg=NONE guibg=NONE
 endif
@@ -222,7 +231,7 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
+
     " refer to doc to add more commands
 endfunction
 
@@ -242,6 +251,19 @@ if executable('taplo')
           \ 'name': 'taplo',
           \ 'cmd': {server_info->['taplo', 'lsp', 'stdio']},
           \ 'allowlist': ['toml'],
+          \ 'workspace_config': {},
+          \ })
+  augroup END
+endif
+
+" LEAN4 LSP
+if executable('lake')
+  augroup lsp_register_lean4_lsp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'lean4-lsp',
+          \ 'cmd': {server_info->['lake', 'serve']},
+          \ 'allowlist': ['lean'],
           \ 'workspace_config': {},
           \ })
   augroup END

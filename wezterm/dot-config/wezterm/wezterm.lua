@@ -49,15 +49,25 @@ end
 
 -- For example, changing the color scheme:
 config.font = wezterm.font_with_fallback {
+  --"BigBlueTermPlus Nerd Font",
+  "M+1Code Nerd Font Mono",
+  "M+CodeLat50 Nerd Font Mono",
+  --"JetBrainsMono Nerd Font Mono",
   "Sarasa Term TC",
   "Sarasa Term HC",
   "Sarasa Term SC",
   "Sarasa Term J",
   "Sarasa Term K",
   "Iosevka Nerd Font Propo"
+  ----"BigBlue TerminalPlus",
+  --"MisakiGothic2nd",
+  --"Fusion Pixel 8px Monospaced zh_hant"
+  --"BmPlus IBM VGA 8x14",
+  --"Unifont"
 }
-config.font_size = 12.0
-config.color_scheme = "Gruvbox (Gogh)"
+config.font_size = 12
+config.freetype_load_flags = 'NO_HINTING|NO_AUTOHINT'
+config.color_scheme = "Gruvbox Dark (Gogh)"
 local tab_bar_theme = extract_tab_bar_colors_from_theme(config.color_scheme)
 config.window_decorations = "NONE"
 -- config.enable_tab_bar = false
@@ -68,7 +78,7 @@ function opaque_when_fullscreen(window)
   if window_dims.is_full_screen then
     overrides.window_background_opacity = 1.0
   else
-    overrides.window_background_opacity = 0.9
+    overrides.window_background_opacity = 0.80
   end
   window:set_config_overrides(overrides)
 end
@@ -88,6 +98,14 @@ config.window_frame = tab_bar_theme.window_frame_colors
 config.colors = {
   tab_bar = tab_bar_theme.tab_bar_colors,
 }
+wezterm.on('update-right-status', function(window, pane)
+  local date = wezterm.strftime '%Y-%m-%d %H:%M:%S'
+
+  -- Make it italic and underlined
+  window:set_right_status(wezterm.format {
+    { Text = date },
+  })
+end)
 
 config.window_padding = {
   left = 20,
@@ -111,7 +129,7 @@ config.unix_domains = {
 -- `wezterm connect unix` by default, connecting to the unix
 -- domain on startup.
 -- If you prefer to connect manually, leave out this line.
-config.default_gui_startup_args = { 'connect', 'unix' }
+-- config.default_gui_startup_args = { 'connect', 'unix' }
 
 -- and finally, return the configuration to wezterm
 return config

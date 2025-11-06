@@ -60,7 +60,7 @@
 }
 
 tooltip {
-    font-family: Iosevka Nerd Font Propo, monospace;
+    font-family: 'M+CodeLat50 Nerd Font Propo', monospace;
     background-color: @tooltipbg;
     border-radius: 5px;
     border: 1px solid @bg3;
@@ -72,7 +72,7 @@ tooltip label {
 }
 
 window#waybar {
-    font-family: Iosevka Nerd Font Propo, monospace;
+    font-family: 'M+CodeLat50 Nerd Font Propo', monospace;
     background-color: transparent;
     border-bottom: 0px;
     color: @fg;

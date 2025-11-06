@@ -9,7 +9,7 @@ margin: 5px;
 border: none;
 color: #ebdbb2;
 background-color: #1d2021;
-font-family: Sarasa Term TC;
+font-family: 'M+CodeLat50 Nerd Font Propo', 'Sarasa Term TC';
 }
 
 #inner-box {
@@ -33,7 +33,7 @@ border: none;
 margin: 5px;
 border: none;
 color: #ebdbb2;
-font-family: Sarasa Term TC;
+font-family: 'M+CodeLat50 Nerd Font Propo', 'Sarasa Term TC';
 }
 
 #entry:selected {

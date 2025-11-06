@@ -8,7 +8,6 @@
         "source": "~/.face",
         "width": 16,
         "height": 6,
-        "preserveAspectRatio": true
     },
     "display": {
         "separator": " ",

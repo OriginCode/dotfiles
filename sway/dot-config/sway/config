@@ -284,7 +284,7 @@ bar {
     #swaybar_command waybar
 }
 
-bindsym $mod+n exec echo "" | dmenu -p "New name for this workspace" | xargs -r swaymsg rename workspace to
+bindsym $mod+n exec echo "" | wmenu -p "New name for this workspace" | xargs -r swaymsg rename workspace to
 
 # Use amixer to adjust volume in Alsa
 bindsym XF86AudioRaiseVolume exec amixer --card 1 sset 'Master' 5+
@@ -292,10 +292,10 @@ bindsym XF86AudioLowerVolume exec amixer --card 1 sset 'Master' 5-
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Border
-#default_border none
+default_border none
 #default_floating_border none
-default_border pixel 1
-default_floating_border normal 1
+#default_border pixel 1
+default_floating_border normal 0
 #client.<class>         <border>        <background>    <text>  <indicator>
 client.focused          $bg2            $bg2            $fg     $bgalpha
 client.focused_inactive $bg2            $bg2            $fg4    $bgalpha
@@ -306,21 +306,24 @@ title_align center
 # Dual monitors
 #output DP-1 pos 0 840
 #exec_always '~/.config/sway/scripts/mpvpaper.sh'
-output DP-1 mode 1920x1080 pos 0 840 bg ~/Images/Wallpapers/Yume_no_nedoko.png fill
-output HDMI-A-1 mode 1920x1080 pos 1920 0 transform 270 bg ~/Images/Wallpapers/Sakura_Yoru.png fill
-output eDP-1 mode 1920x1080 pos 1920 1920 bg ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg fill
+output DP-1 bg ~/Images/Wallpapers/Yume_no_nedoko.png fill
+output HDMI-A-1 bg ~/Images/Wallpapers/Sakura_Yoru.png fill
+output eDP-1 bg ~/Images/Wallpapers/Yume_no_nedoko.png fill
 bindsym $mod+b output eDP-1 toggle
 
 default_orientation horizontal
 
 # SwayFX
-#blur enable
-#corner_radius 5
-#shadows enable
-#shadow_blur_radius 15
+blur enable
+corner_radius 5
+shadows enable
+shadow_blur_radius 15
 
 # Set keyboard layout
 input type:keyboard xkb_layout us
+
+# Set natural scrolling
+input type:touchpad natural_scroll enabled
 
 # Gaps
 gaps inner 10
@@ -359,7 +362,7 @@ bindsym Mod4+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.
 
 # Start GNOME Keyring
 #exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
-#exec /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+exec /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Set wallpaper
 # exec_always feh --bg-fill ~/Images/Wallpapers/Harmony-Traffic-Lights.jpg --bg-fill ~/Images/AOSC_Gruvbox.png
@@ -370,11 +373,14 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 #bindsym $mod+i exec feh --bg-fill ~/Images/Wallpapers/Mashiro_Yukata_Horizontal.png --bg-fill ~/Images/Wallpapers/MashiroNeko.png
 bindsym $mod+i exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Hanabi.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Sukumizu.png fill'
 bindsym $mod+u exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/MashiroNekoPantu.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
-bindsym $mod+y exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Sparkle.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Ginkgo.png fill'
-bindsym $mod+p exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_R18_Spread.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/akipeko-shojo-r18.jpeg fill'
+bindsym $mod+y exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Collector.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Ginkgo.png fill'
+bindsym $mod+p exec 'swaymsg output DP-1 bg ~/Images/Wallpapers/Mashiro_Yu_R18.png fill && swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/131741903_p1.jpg fill'
 #bindsym $mod+i exec 'swaymsg output HDMI-A-1 bg ~/Images/Wallpapers/Mashiro_Swimsuit.png fill'
 #bindsym $mod+u exec 'pkill mpvpaper; ~/.config/sway/scripts/mpvpaper.sh'
 #bindsym $mod+u exec feh --bg-fill ~/Images/Wallpapers/5_00_AM.jpg --bg-fill ~/Images/Wallpapers/Mashiro_Yukata.png
+
+# MPD Pause Volume Fade
+bindsym $mod+t exec 'LANG=en_US.UTF-8 ~/.local/bin/mpc-fade'
 
 # Start polybar
 #exec_always $HOME/.config/polybar/launch.sh --blocks
@@ -397,6 +403,9 @@ exec /usr/lib/libexec/polkit-kde-authentication-agent-1
 for_window [app_id="org.wezfurlong.wezterm"] move to workspace $ws1
 for_window [app_id="org.telegram"] move to workspace $ws2
 for_window [class="SchildiChat"] move to workspace $ws2
+for_window [class="Element"] move to workspace $ws2
+for_window [app_id="cinny"] move to workspace $ws2
+for_window [app_id="org.gnome.Fractal"] move to workspace $ws2
 for_window [app_id="firefox"] move to workspace $ws3
 for_window [app_id="org.qutebrowser.qutebrowser"] move to workspace $ws3
 for_window [app_id="thunderbird"] move to workspace $ws4
@@ -404,12 +413,21 @@ for_window [class="Code - OSS"] move to workspace $ws5
 for_window [class="easyeffects"] move to workspace $ws9
 for_window [class="feishin"] move to workspace $ws10
 exec env GBM_BACKEND=nvidia-drm __GLX_VENDOR_LIBRARY_NAME=nvidia wezterm
-exec telegram-desktop
+exec Telegram
+#exec 'element-desktop --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-version=3'
+#exec element-desktop
+#exec fractal
+exec cinny
 #exec flatpak run chat.schildi.desktop
 #exec firefox
 exec qutebrowser
+exec thunderbird
 #exec feishin
 for_window [class="com.vixalien.sticky"] sticky enable
 for_window [class="com.vixalien.sticky"] floating enable
+for_window [app_id="showmethekey-gtk" title="Floating Window - Show Me The Key"] {
+  floating enable
+  sticky enable
+}
 
 include /etc/sway/config.d/*
