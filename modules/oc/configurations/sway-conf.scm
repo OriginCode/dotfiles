@@ -8,7 +8,8 @@
   #:use-module (gnu packages wm)
   #:use-module (gnu packages image)
   #:use-module (gnu packages fcitx5)
-  #:use-module (gnu packages vnc))
+  #:use-module (gnu packages vnc)
+  #:use-module (gnu packages gnome))
 
 (define custom-sway-configuration
   (sway-configuration
@@ -18,6 +19,9 @@
                 wl-clipboard
                 wayvnc
                 swayfx
+                ;sway
+                fuzzel
+                adwaita-icon-theme
                 ))
     (variables
       `((mod . "Mod1")
@@ -107,14 +111,17 @@
           . ,#~(string-append "exec " #$grim "/bin/grim " "~/Pictures/screenshot.png"))
         (Ctrl+Print
           . ,#~(string-append "exec " #$grim "/bin/grim - | " #$wl-clipboard "/bin/wl-copy"))
+        ($mod+d . ,#~(string-append "exec " #$fuzzel "/bin/fuzzel"))
         ))
 
     (startup-programs `(,#~(string-append #$foot "/bin/foot")
-                         ;,#~(string-append #$fcitx5 "/bin/fcitx5")
+                         ,#~(string-append #$wayvnc "/bin/wayvnc 0.0.0.0")
+                         ,#~(string-append #$fcitx5 "/bin/fcitx5")
                          ))
 
     (bar (sway-bar
-           (status-command "while date +'%Y-%m-%d %X'; do sleep 1; done")))
+           (status-command "while date +'%Y-%m-%d %X'; do sleep 1; done")
+           (extra-content '("icon_theme Adwaita"))))
 
     (inputs (list
               (sway-input
@@ -135,5 +142,6 @@
                      "blur enable"
                      "corner_radius 5"
                      "shadows enable"
-                     "shadow_blur_radius 15"))
+                     "shadow_blur_radius 15"
+                     ))
     ))
